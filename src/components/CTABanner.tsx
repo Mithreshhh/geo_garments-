@@ -25,14 +25,13 @@ export default function CTABanner() {
   };
 
   return (
-    <section className="py-20 md:py-32 bg-[#E60023] relative overflow-hidden">
-      {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-10 pointer-events-none">
-        <div className="absolute top-0 left-10 w-80 h-80 bg-white rounded-full blur-3xl" />
-        <div className="absolute bottom-0 right-10 w-80 h-80 bg-black rounded-full blur-3xl" />
+    <section className="py-24 md:py-36 bg-[#0A0A0A] relative overflow-hidden">
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-[-20%] left-[-10%] w-[500px] h-[500px] bg-[#C8102E] rounded-full blur-[200px] opacity-[0.08]" />
+        <div className="absolute bottom-[-20%] right-[-10%] w-[500px] h-[500px] bg-[#C8102E] rounded-full blur-[200px] opacity-[0.08]" />
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <motion.div
           variants={containerVariants}
           initial="hidden"
@@ -40,70 +39,71 @@ export default function CTABanner() {
           viewport={{ once: true }}
           className="text-center"
         >
-          {/* Main Heading */}
-          <motion.h2
-            variants={itemVariants}
-            className="text-4xl md:text-6xl font-black text-white mb-6"
-          >
-            Upgrade Your Wardrobe Today
-          </motion.h2>
-
-          {/* Subtext */}
           <motion.p
             variants={itemVariants}
-            className="text-xl md:text-2xl text-white opacity-90 mb-10 max-w-2xl mx-auto"
+            className="text-xs font-semibold uppercase tracking-[0.2em] text-[#C8102E] mb-6"
           >
-            Premium quality clothing at factory-direct prices. Hand-stitched with precision. No compromises.
+            Elevate Your Wardrobe
           </motion.p>
 
-          {/* Benefits */}
+          <motion.h2
+            variants={itemVariants}
+            className="font-display text-4xl md:text-6xl font-bold text-white mb-6 leading-tight"
+          >
+            Premium Clothing,
+            <br />
+            Priced with Integrity
+          </motion.h2>
+
+          <motion.p
+            variants={itemVariants}
+            className="text-lg md:text-xl text-gray-400 font-light mb-12 max-w-2xl mx-auto leading-relaxed"
+          >
+            Every thread is chosen with care. Every stitch is placed with precision.
+            Experience clothing that respects both your style and your budget.
+          </motion.p>
+
           <motion.div
             variants={itemVariants}
-            className="flex flex-wrap justify-center gap-6 mb-12 text-white font-semibold text-sm md:text-base"
+            className="flex flex-wrap justify-center gap-8 mb-14 text-sm font-medium text-gray-300"
           >
-            <div className="flex items-center space-x-2">
-              <span className="text-3xl">✓</span>
-              <span>Factory Direct Pricing</span>
-            </div>
-            <div className="flex items-center space-x-2">
-              <span className="text-3xl">✓</span>
-              <span>Hand-Stitched Quality</span>
-            </div>
-            <div className="flex items-center space-x-2">
-              <span className="text-3xl">✓</span>
-              <span>Fast Delivery</span>
-            </div>
+            {['Factory-Direct Pricing', 'Hand-Stitched Quality', 'Reliable Delivery'].map((item) => (
+              <div key={item} className="flex items-center gap-2">
+                <svg className="w-4 h-4 text-[#C8102E]" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                </svg>
+                <span>{item}</span>
+              </div>
+            ))}
           </motion.div>
 
-          {/* CTA Buttons */}
           <motion.div
             variants={itemVariants}
             className="flex flex-col sm:flex-row justify-center gap-4"
           >
             <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+              whileHover={{ scale: 1.03 }}
+              whileTap={{ scale: 0.97 }}
               onClick={() => navigate('/products')}
-              className="px-8 py-4 bg-white text-[#E60023] font-bold rounded-none transition-all duration-300 hover:bg-gray-100 active:scale-95 text-lg"
+              className="px-10 py-4 bg-[#C8102E] text-white font-semibold text-sm uppercase tracking-[0.1em] transition-all duration-300 hover:bg-red-800 active:scale-95"
             >
-              Shop Now
+              Explore Collection
             </motion.button>
             <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+              whileHover={{ scale: 1.03 }}
+              whileTap={{ scale: 0.97 }}
               onClick={() => navigate('/bulk-orders')}
-              className="px-8 py-4 border-2 border-white text-white font-bold rounded-none transition-all duration-300 hover:bg-white hover:text-[#E60023] active:scale-95 text-lg"
+              className="px-10 py-4 border border-gray-600 text-white font-semibold text-sm uppercase tracking-[0.1em] transition-all duration-300 hover:bg-white hover:text-[#0A0A0A] active:scale-95"
             >
-              Bulk Orders
+              Request Bulk Quote
             </motion.button>
           </motion.div>
 
-          {/* Bottom Text */}
           <motion.p
             variants={itemVariants}
-            className="mt-8 text-white opacity-80 text-sm"
+            className="mt-10 text-gray-500 text-xs tracking-wide"
           >
-            Join 10,000+ happy customers across India
+            Trusted by 10,000+ customers and retailers across India
           </motion.p>
         </motion.div>
       </div>

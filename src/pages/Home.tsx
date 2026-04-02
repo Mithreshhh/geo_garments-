@@ -9,7 +9,6 @@ import CTABanner from '../components/CTABanner';
 export default function Home() {
   return (
     <div className="w-full">
-      <div className="pt-20" /> {/* Navbar offset */}
       <Hero />
       <Marquee />
       <Features />

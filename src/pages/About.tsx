@@ -1,6 +1,9 @@
 import { motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 
 export default function About() {
+  const navigate = useNavigate();
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -22,85 +25,105 @@ export default function About() {
   };
 
   return (
-    <div className="min-h-screen bg-white pt-32">
-      {/* Hero Section */}
-      <section className="py-20 md:py-32 bg-gradient-to-r from-black to-gray-800 text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <motion.h1
+    <div className="min-h-screen bg-white pt-20">
+      <section className="py-24 md:py-36 bg-[#0A0A0A] text-white relative overflow-hidden">
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute top-[-20%] right-[-10%] w-[500px] h-[500px] bg-[#C8102E] rounded-full blur-[200px] opacity-[0.06]" />
+        </div>
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+          <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="text-5xl md:text-6xl font-black mb-6"
+            className="text-xs font-semibold uppercase tracking-[0.2em] text-[#C8102E] mb-6"
           >
-            About <span className="text-[#E60023]">Geo Garments</span>
+            Our Story
+          </motion.p>
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="font-display text-5xl md:text-7xl font-bold mb-6"
+          >
+            About <span className="text-[#C8102E]">Geo Garments</span>
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-xl md:text-2xl opacity-90 max-w-2xl mx-auto"
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="text-lg md:text-xl text-gray-400 font-light max-w-2xl mx-auto"
           >
-            Premium clothing, factory-direct pricing, hand-stitched with care
+            Where master craftsmanship meets factory-direct integrity — delivering clothing
+            that earns trust, one stitch at a time.
           </motion.p>
         </div>
       </section>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-32">
-        {/* Brand Story */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-36">
         <motion.section
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="mb-20"
+          className="mb-28"
         >
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <motion.div
-              initial={{ opacity: 0, x: -50 }}
+              initial={{ opacity: 0, x: -40 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.7 }}
               viewport={{ once: true }}
             >
               <img
-                src="https://via.placeholder.com/400x500?text=Our+Factory"
-                alt="Geo Garments Factory"
-                className="w-full rounded-lg shadow-2xl"
+                src="https://images.unsplash.com/photo-1558171813-4c088753af8f?w=800&q=80"
+                alt="Geo Garments — our manufacturing facility"
+                className="w-full rounded-sm shadow-2xl aspect-[4/5] object-cover"
               />
             </motion.div>
             <motion.div
-              initial={{ opacity: 0, x: 50 }}
+              initial={{ opacity: 0, x: 40 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.7 }}
               viewport={{ once: true }}
               className="space-y-6"
             >
+              <p className="geo-label">Our Beginning</p>
               <h2 className="geo-heading text-4xl md:text-5xl">
-                Our <span className="text-[#E60023]">Story</span>
+                The Geo <span className="text-[#C8102E]">Story</span>
               </h2>
-              <p className="text-gray-700 font-medium text-lg leading-relaxed">
-                Founded in Kompally, Hyderabad, Geo Garments started with a simple mission: to make premium clothing accessible to everyone by eliminating middlemen and selling directly from our factory.
+              <p className="text-gray-600 text-base leading-relaxed">
+                Founded in Kompally, Hyderabad, Geo Garments was born from a clear conviction: 
+                premium clothing should not carry a premium price. By manufacturing in-house and 
+                selling directly, we remove every unnecessary cost between our factory floor and 
+                your wardrobe.
               </p>
-              <p className="text-gray-600 leading-relaxed">
-                We believe that quality clothing shouldn't come with a premium price tag. Our team of skilled tailors brings decades of combined experience in traditional textile craftsmanship, ensuring every piece meets our exacting standards.
+              <p className="text-gray-500 text-base leading-relaxed">
+                Our team of master tailors combines decades of traditional textile expertise 
+                with modern quality discipline, ensuring every garment meets exacting standards 
+                before it reaches you.
               </p>
-              <p className="text-gray-600 leading-relaxed">
-                What started as a small operation has grown into a trusted name for retailers, institutions, and individual customers who value quality and fair pricing. Today, we serve over 10,000 happy customers across India.
+              <p className="text-gray-500 text-base leading-relaxed">
+                What began as a small workshop has grown into a brand trusted by retailers, 
+                institutions, and discerning individuals across India — all built on the foundation 
+                of quality, transparency, and honest pricing.
               </p>
             </motion.div>
           </div>
         </motion.section>
 
-        {/* Mission & Vision */}
         <motion.section
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="mb-20"
+          className="mb-28"
         >
-          <h2 className="geo-heading text-4xl md:text-5xl mb-12 text-center">
-            Our <span className="text-[#E60023]">Purpose</span>
-          </h2>
+          <div className="text-center mb-16">
+            <p className="geo-label mb-4">Our Purpose</p>
+            <h2 className="geo-heading text-4xl md:text-5xl">
+              Mission <span className="text-[#C8102E]">&</span> Vision
+            </h2>
+          </div>
           <motion.div
             variants={containerVariants}
             initial="hidden"
@@ -110,79 +133,89 @@ export default function About() {
           >
             <motion.div
               variants={itemVariants}
-              className="geo-card p-8 border-l-4 border-[#E60023]"
+              className="p-10 bg-[#FAF8F5] border-l-2 border-[#C8102E] rounded-sm"
             >
-              <h3 className="text-2xl font-bold text-black mb-4">🎯 Mission</h3>
-              <p className="text-gray-700 leading-relaxed">
-                To deliver premium, hand-stitched clothing at factory-direct prices, making authentic quality accessible to everyone while supporting our skilled artisans and fostering local manufacturing.
+              <p className="geo-label mb-4">Mission</p>
+              <p className="text-gray-600 leading-relaxed">
+                To deliver expertly tailored clothing at factory-direct prices, making 
+                authentic quality accessible to every customer while supporting our skilled 
+                artisans and strengthening local manufacturing.
               </p>
             </motion.div>
             <motion.div
               variants={itemVariants}
-              className="geo-card p-8 border-l-4 border-[#E60023]"
+              className="p-10 bg-[#FAF8F5] border-l-2 border-[#C8102E] rounded-sm"
             >
-              <h3 className="text-2xl font-bold text-black mb-4">✨ Vision</h3>
-              <p className="text-gray-700 leading-relaxed">
-                To become India's most trusted factory-direct clothing brand, known for uncompromising quality, transparent pricing, and exceptional customer experience that sets new industry standards.
+              <p className="geo-label mb-4">Vision</p>
+              <p className="text-gray-600 leading-relaxed">
+                To become India&apos;s most trusted factory-direct clothing brand — recognised for 
+                uncompromising quality, transparent pricing, and a customer experience that sets 
+                new industry standards.
               </p>
             </motion.div>
           </motion.div>
         </motion.section>
 
-        {/* Values */}
         <motion.section
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="mb-20 bg-gray-50 p-12 rounded-lg"
+          className="mb-28"
         >
-          <h2 className="geo-heading text-4xl md:text-5xl mb-12 text-center">
-            Our <span className="text-[#E60023]">Values</span>
-          </h2>
+          <div className="text-center mb-16">
+            <p className="geo-label mb-4">What We Stand For</p>
+            <h2 className="geo-heading text-4xl md:text-5xl">
+              Our <span className="text-[#C8102E]">Values</span>
+            </h2>
+          </div>
           <motion.div
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
           >
             {[
-              { icon: '👑', title: 'Quality First', desc: 'Every piece reflects our commitment to excellence' },
-              { icon: '💰', title: 'Fair Pricing', desc: 'No hidden costs, just honest factory-direct value' },
-              { icon: '🤝', title: 'Transparency', desc: 'Open communication with every customer' },
-              { icon: '🌍', title: 'Sustainability', desc: 'Responsible manufacturing for a better future' },
+              { title: 'Quality First', desc: 'Every piece reflects our commitment to excellence and precision craftsmanship.' },
+              { title: 'Honest Pricing', desc: 'No inflated margins, no hidden costs — just the true cost of quality.' },
+              { title: 'Full Transparency', desc: 'We maintain open and clear communication with every customer at every stage.' },
+              { title: 'Sustainable Practice', desc: 'Responsible manufacturing processes that respect both people and the planet.' },
             ].map((value, idx) => (
               <motion.div
                 key={idx}
                 variants={itemVariants}
-                className="text-center p-6"
+                className="p-8 bg-[#FAF8F5] rounded-sm border border-gray-100 text-center"
               >
-                <div className="text-5xl mb-4">{value.icon}</div>
-                <h3 className="font-bold text-black text-lg mb-2">{value.title}</h3>
-                <p className="text-gray-600 text-sm">{value.desc}</p>
+                <div className="w-12 h-12 bg-[#C8102E] text-white rounded-full flex items-center justify-center font-display font-bold text-lg mx-auto mb-5">
+                  {idx + 1}
+                </div>
+                <h3 className="font-semibold text-[#0A0A0A] text-lg mb-3">{value.title}</h3>
+                <p className="text-gray-500 text-sm leading-relaxed font-light">{value.desc}</p>
               </motion.div>
             ))}
           </motion.div>
         </motion.section>
 
-        {/* The Process */}
         <motion.section
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="mb-20"
+          className="mb-28"
         >
-          <h2 className="geo-heading text-4xl md:text-5xl mb-12 text-center">
-            How We <span className="text-[#E60023]">Work</span>
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+          <div className="text-center mb-16">
+            <p className="geo-label mb-4">Our Process</p>
+            <h2 className="geo-heading text-4xl md:text-5xl">
+              How We <span className="text-[#C8102E]">Work</span>
+            </h2>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             {[
-              { step: 1, title: 'Selection', desc: 'Carefully curate premium fabrics from trusted suppliers' },
-              { step: 2, title: 'Cutting', desc: 'Precise cutting using advanced techniques' },
-              { step: 3, title: 'Stitching', desc: 'Hand-stitched by our skilled artisan tailors' },
-              { step: 4, title: 'Quality Check', desc: 'Rigorous inspection before delivery' },
+              { step: 1, title: 'Fabric Selection', desc: 'Premium fabrics sourced from trusted mills for durability and comfort.' },
+              { step: 2, title: 'Precision Cutting', desc: 'Advanced pattern cutting for consistent sizing and minimal waste.' },
+              { step: 3, title: 'Expert Stitching', desc: 'Hand-stitched by master tailors with meticulous attention to detail.' },
+              { step: 4, title: 'Quality Assurance', desc: 'Multi-point inspection ensures only perfect garments leave our facility.' },
             ].map((item, idx) => (
               <motion.div
                 key={idx}
@@ -192,70 +225,67 @@ export default function About() {
                 viewport={{ once: true }}
                 className="text-center"
               >
-                <div className="w-16 h-16 bg-[#E60023] text-white rounded-full flex items-center justify-center font-bold text-2xl mx-auto mb-4">
+                <div className="w-14 h-14 bg-[#C8102E] text-white rounded-full flex items-center justify-center font-display font-bold text-xl mx-auto mb-5">
                   {item.step}
                 </div>
-                <h3 className="font-bold text-black text-lg mb-2">{item.title}</h3>
-                <p className="text-gray-600 text-sm">{item.desc}</p>
+                <h3 className="font-semibold text-[#0A0A0A] text-lg mb-2">{item.title}</h3>
+                <p className="text-gray-500 text-sm leading-relaxed font-light">{item.desc}</p>
               </motion.div>
             ))}
           </div>
         </motion.section>
 
-        {/* Stats */}
         <motion.section
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="bg-black text-white py-16 px-8 rounded-lg text-center"
+          className="bg-[#0A0A0A] text-white py-20 px-8 rounded-sm mb-28"
         >
           <motion.div
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            className="grid grid-cols-2 md:grid-cols-4 gap-8"
+            className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center"
           >
             {[
-              { number: '2000+', label: 'Orders Fulfilled' },
-              { number: '10K+', label: 'Happy Customers' },
+              { number: '2,000+', label: 'Orders Fulfilled' },
+              { number: '10,000+', label: 'Happy Customers' },
               { number: '50+', label: 'Expert Tailors' },
-              { number: '4.9★', label: 'Average Rating' },
+              { number: '4.9/5', label: 'Average Rating' },
             ].map((stat, idx) => (
-              <motion.div
-                key={idx}
-                variants={itemVariants}
-              >
-                <p className="text-3xl md:text-4xl font-black text-[#E60023] mb-2">
+              <motion.div key={idx} variants={itemVariants}>
+                <p className="text-3xl md:text-4xl font-display font-bold text-[#C8102E] mb-2">
                   {stat.number}
                 </p>
-                <p className="text-white text-sm md:text-base">{stat.label}</p>
+                <p className="text-gray-400 text-sm font-light">{stat.label}</p>
               </motion.div>
             ))}
           </motion.div>
         </motion.section>
 
-        {/* CTA */}
         <motion.section
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="text-center mt-20"
+          className="text-center"
         >
-          <h2 className="geo-heading text-3xl md:text-4xl mb-6">
-            Join Our <span className="text-[#E60023]">Community</span>
+          <p className="geo-label mb-4">Get Started</p>
+          <h2 className="geo-heading text-3xl md:text-4xl mb-5">
+            Experience the Geo <span className="text-[#C8102E]">Difference</span>
           </h2>
-          <p className="text-gray-600 text-lg mb-8 max-w-2xl mx-auto">
-            Experience the Geo Garments difference. Premium quality, fair pricing, direct from factory.
+          <p className="text-gray-500 text-lg mb-10 max-w-2xl mx-auto font-light">
+            Premium quality, honest pricing, and a commitment to craftsmanship that speaks for itself.
           </p>
           <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="geo-btn-primary text-lg"
+            whileHover={{ scale: 1.03 }}
+            whileTap={{ scale: 0.97 }}
+            onClick={() => navigate('/products')}
+            className="geo-btn-primary text-sm uppercase tracking-[0.1em]"
           >
-            Shop Now
+            Explore Our Collection
           </motion.button>
         </motion.section>
       </div>

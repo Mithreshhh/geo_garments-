@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
-import { ChevronRight } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 
 interface Product {
   id: number;
@@ -17,49 +17,48 @@ interface ProductPreviewProps {
 export default function ProductPreview({ products }: ProductPreviewProps) {
   const navigate = useNavigate();
 
-  // Placeholder products
   const defaultProducts: Product[] = [
     {
       id: 1,
-      name: 'Premium Cotton Shirt',
+      name: 'Premium Egyptian Cotton Shirt',
       price: 599,
       category: 'Shirts',
-      image: 'https://via.placeholder.com/300x400?text=Premium+Cotton+Shirt',
+      image: 'https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=600&q=80',
     },
     {
       id: 2,
-      name: 'Classic Blue Shirt',
+      name: 'Classic Oxford Blue Formal',
       price: 649,
       category: 'Shirts',
-      image: 'https://via.placeholder.com/300x400?text=Blue+Shirt',
+      image: 'https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?w=600&q=80',
     },
     {
       id: 3,
-      name: 'Formal Trousers',
+      name: 'Tailored Slim-Fit Trousers',
       price: 799,
-      category: 'Pants',
-      image: 'https://via.placeholder.com/300x400?text=Formal+Trousers',
+      category: 'Trousers',
+      image: 'https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=600&q=80',
     },
     {
       id: 4,
-      name: 'Casual Chinos',
+      name: 'Premium Stretch Chinos',
       price: 749,
-      category: 'Pants',
-      image: 'https://via.placeholder.com/300x400?text=Casual+Chinos',
+      category: 'Trousers',
+      image: 'https://images.unsplash.com/photo-1473966968600-fa801b869a1a?w=600&q=80',
     },
     {
       id: 5,
-      name: 'Office Collection Shirt',
+      name: 'Executive Linen Shirt',
       price: 699,
       category: 'Shirts',
-      image: 'https://via.placeholder.com/300x400?text=Office+Shirt',
+      image: 'https://images.unsplash.com/photo-1598033129183-c4f50c736c10?w=600&q=80',
     },
     {
       id: 6,
-      name: 'Denim Pants',
+      name: 'Indigo Selvedge Denim',
       price: 899,
-      category: 'Pants',
-      image: 'https://via.placeholder.com/300x400?text=Denim+Pants',
+      category: 'Trousers',
+      image: 'https://images.unsplash.com/photo-1542272604-787c3835535d?w=600&q=80',
     },
   ];
 
@@ -70,143 +69,94 @@ export default function ProductPreview({ products }: ProductPreviewProps) {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.15,
+        staggerChildren: 0.1,
         delayChildren: 0.2,
       },
     },
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 40, scale: 0.85 },
+    hidden: { opacity: 0, y: 30 },
     visible: {
       opacity: 1,
       y: 0,
-      scale: 1,
-      transition: { duration: 0.6 },
+      transition: { duration: 0.5 },
     },
   };
 
   return (
-    <section className="py-20 md:py-32 bg-gradient-to-br from-gray-50 to-white">
+    <section className="py-24 md:py-36 bg-[#FAF8F5]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="text-center mb-20"
         >
-          <h2 className="geo-heading text-4xl md:text-5xl mb-4">
-            Featured <span className="text-[#E60023]">Collection</span>
+          <p className="geo-label mb-4">Curated Selection</p>
+          <h2 className="geo-heading text-4xl md:text-5xl mb-5">
+            Featured <span className="text-[#C8102E]">Collection</span>
           </h2>
-          <p className="text-gray-600 text-lg">
-            Handpicked premium clothing for every occasion
+          <p className="text-gray-500 text-lg font-light max-w-xl mx-auto">
+            Hand-picked pieces from our latest range — designed for comfort, built to last.
           </p>
         </motion.div>
 
-        {/* Products Grid */}
         <motion.div
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.1 }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16"
         >
           {itemsToShow.map((product) => (
             <motion.div
               key={product.id}
               variants={itemVariants}
-              className="group"
+              className="group cursor-pointer"
+              onClick={() => navigate('/products')}
             >
-              {/* Product Card */}
-              <div className="relative overflow-hidden rounded-lg bg-white border border-gray-100 shadow-sm hover:shadow-lg transition-shadow duration-300">
-                {/* Image Container */}
-                <motion.div
-                  className="relative h-96 bg-gray-100 overflow-hidden cursor-pointer"
-                  whileHover={{ scale: 1.05 }}
-                  transition={{ duration: 0.4 }}
-                >
+              <div className="relative overflow-hidden rounded-sm bg-white border border-gray-100 hover:shadow-[0_20px_50px_rgba(0,0,0,0.06)] transition-all duration-400">
+                <div className="relative h-80 bg-gray-100 overflow-hidden">
                   <img
                     src={product.image}
                     alt={product.name}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                   />
-
-                  {/* Category Badge */}
-                  <motion.div
-                    initial={{ x: -20, opacity: 0 }}
-                    whileInView={{ x: 0, opacity: 1 }}
-                    transition={{ duration: 0.4, delay: 0.1 }}
-                    className="absolute top-4 left-4 bg-[#E60023] text-white px-3 py-1 rounded-full text-xs font-semibold"
-                  >
+                  <div className="absolute top-4 left-4 bg-[#0A0A0A] text-white px-3 py-1 rounded-sm text-[10px] font-semibold uppercase tracking-[0.15em]">
                     {product.category}
-                  </motion.div>
-
-                  {/* Overlay */}
-                  <motion.div
-                    initial={{ opacity: 0 }}
-                    whileHover={{ opacity: 1 }}
-                    transition={{ duration: 0.3 }}
-                    className="absolute inset-0 bg-black/40 flex items-center justify-center"
-                  >
-                    <motion.button
-                      whileHover={{ scale: 1.1 }}
-                      whileTap={{ scale: 0.95 }}
-                      onClick={() => navigate('/products')}
-                      className="geo-btn-primary"
+                  </div>
+                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-400 flex items-center justify-center">
+                    <motion.span
+                      initial={{ opacity: 0, y: 10 }}
+                      whileHover={{ opacity: 1, y: 0 }}
+                      className="text-white font-semibold text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-[#C8102E] px-6 py-2.5 uppercase tracking-[0.1em]"
                     >
                       View Details
-                    </motion.button>
-                  </motion.div>
-                </motion.div>
-
-                {/* Product Info */}
-                <div className="p-6">
-                  <motion.p
-                    initial={{ opacity: 0 }}
-                    whileInView={{ opacity: 1 }}
-                    transition={{ duration: 0.4 }}
-                    className="text-[#E60023] text-sm font-semibold mb-2"
-                  >
-                    {product.category}
-                  </motion.p>
-
-                  <h3 className="text-lg font-bold text-black mb-2 line-clamp-2 group-hover:text-[#E60023] transition-colors">
-                    {product.name}
-                  </h3>
-
-                  <div className="flex items-center justify-between">
-                    <motion.p
-                      initial={{ opacity: 0 }}
-                      whileInView={{ opacity: 1 }}
-                      transition={{ duration: 0.4, delay: 0.1 }}
-                      className="text-2xl font-bold text-black"
-                    >
-                      ₹{product.price.toLocaleString()}
-                    </motion.p>
-                    <motion.div
-                      whileHover={{ x: 5 }}
-                      transition={{ duration: 0.2 }}
-                    >
-                      <ChevronRight className="w-5 h-5 text-[#E60023]" />
-                    </motion.div>
+                    </motion.span>
                   </div>
                 </div>
 
-                {/* Bottom accent line */}
-                <motion.div
-                  initial={{ scaleX: 0 }}
-                  whileInView={{ scaleX: 1 }}
-                  transition={{ duration: 0.6, delay: 0.2 }}
-                  className="absolute bottom-0 left-0 right-0 h-1 bg-[#E60023] origin-left"
-                />
+                <div className="p-6">
+                  <p className="text-[10px] font-semibold text-[#C8102E] uppercase tracking-[0.15em] mb-2">
+                    {product.category}
+                  </p>
+                  <h3 className="text-base font-semibold text-[#0A0A0A] mb-3 group-hover:text-[#C8102E] transition-colors">
+                    {product.name}
+                  </h3>
+                  <div className="flex items-center justify-between">
+                    <p className="text-xl font-bold text-[#0A0A0A]">
+                      ₹{product.price.toLocaleString()}
+                    </p>
+                    <ArrowRight className="w-4 h-4 text-gray-400 group-hover:text-[#C8102E] group-hover:translate-x-1 transition-all duration-300" />
+                  </div>
+                </div>
               </div>
             </motion.div>
           ))}
         </motion.div>
 
-        {/* View All CTA */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -215,13 +165,13 @@ export default function ProductPreview({ products }: ProductPreviewProps) {
           className="text-center"
         >
           <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
+            whileHover={{ scale: 1.03 }}
+            whileTap={{ scale: 0.97 }}
             onClick={() => navigate('/products')}
-            className="inline-flex items-center gap-2 geo-btn-primary text-lg"
+            className="inline-flex items-center gap-3 geo-btn-primary text-sm uppercase tracking-[0.1em]"
           >
-            View All Products
-            <ChevronRight className="w-5 h-5" />
+            View Full Collection
+            <ArrowRight className="w-4 h-4" />
           </motion.button>
         </motion.div>
       </div>

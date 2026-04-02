@@ -1,16 +1,13 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { ArrowUp } from 'lucide-react';
 
 export default function ScrollToTop() {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
     const toggleVisibility = () => {
-      if (window.scrollY > 300) {
-        setIsVisible(true);
-      } else {
-        setIsVisible(false);
-      }
+      setIsVisible(window.scrollY > 300);
     };
 
     window.addEventListener('scroll', toggleVisibility);
@@ -34,22 +31,10 @@ export default function ScrollToTop() {
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
           onClick={scrollToTop}
-          className="fixed bottom-8 right-8 w-12 h-12 bg-[#E60023] text-white rounded-full flex items-center justify-center shadow-lg z-40 hover:bg-red-700 transition-colors"
+          className="fixed bottom-8 right-8 w-11 h-11 bg-[#0A0A0A] text-white rounded-sm flex items-center justify-center shadow-lg z-40 hover:bg-[#C8102E] transition-colors duration-300"
           title="Scroll to top"
         >
-          <svg
-            className="w-6 h-6"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M5 10l7-7m0 0l7 7m-7-7v18"
-            />
-          </svg>
+          <ArrowUp className="w-4 h-4" />
         </motion.button>
       )}
     </AnimatePresence>

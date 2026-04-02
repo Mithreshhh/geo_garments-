@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
+import { Check, Building2, GraduationCap, Store } from 'lucide-react';
 
 export default function BulkOrders() {
   const [formData, setFormData] = useState({
@@ -19,7 +20,6 @@ export default function BulkOrders() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission
     console.log('Form submitted:', formData);
     setFormData({ name: '', businessName: '', quantity: '', phone: '', message: '' });
   };
@@ -45,41 +45,54 @@ export default function BulkOrders() {
   };
 
   return (
-    <div className="min-h-screen bg-white pt-32">
-      {/* Hero Section */}
-      <section className="py-20 md:py-32 bg-gradient-to-r from-black to-gray-800 text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <motion.h1
+    <div className="min-h-screen bg-white pt-20">
+      <section className="py-24 md:py-36 bg-[#0A0A0A] text-white relative overflow-hidden">
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute top-[-20%] right-[-10%] w-[500px] h-[500px] bg-[#C8102E] rounded-full blur-[200px] opacity-[0.06]" />
+        </div>
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+          <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="text-5xl md:text-6xl font-black mb-6"
+            className="text-xs font-semibold uppercase tracking-[0.2em] text-[#C8102E] mb-6"
           >
-            Bulk Orders <span className="text-[#E60023]">Made Easy</span>
+            Wholesale & Institutional
+          </motion.p>
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="font-display text-5xl md:text-7xl font-bold mb-6"
+          >
+            Bulk Orders, <span className="text-[#C8102E]">Simplified</span>
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-xl md:text-2xl opacity-90 max-w-2xl mx-auto"
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="text-lg md:text-xl text-gray-400 font-light max-w-2xl mx-auto"
           >
-            Get the best prices on bulk clothing orders with customization options
+            Volume pricing that rewards your business. Full customization, dedicated support,
+            and guaranteed delivery timelines.
           </motion.p>
         </div>
       </section>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-32">
-        {/* Who It's For */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-36">
         <motion.section
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="mb-20"
+          className="mb-28"
         >
-          <h2 className="geo-heading text-4xl md:text-5xl mb-12 text-center">
-            Who We <span className="text-[#E60023]">Serve</span>
-          </h2>
+          <div className="text-center mb-16">
+            <p className="geo-label mb-4">Who We Serve</p>
+            <h2 className="geo-heading text-4xl md:text-5xl">
+              Built for <span className="text-[#C8102E]">Your Business</span>
+            </h2>
+          </div>
           <motion.div
             variants={containerVariants}
             initial="hidden"
@@ -88,182 +101,195 @@ export default function BulkOrders() {
             className="grid grid-cols-1 md:grid-cols-3 gap-8"
           >
             {[
-              { icon: '🏪', title: 'Retailers & Shops', desc: 'Get wholesale pricing for your retail store' },
-              { icon: '🏫', title: 'Institutions', desc: 'Uniforms for schools, colleges, and organizations' },
-              { icon: '🏢', title: 'Corporate Buyers', desc: 'Bulk corporate uniforms and employee wear' },
-            ].map((item, idx) => (
-              <motion.div
-                key={idx}
-                variants={itemVariants}
-                className="geo-card p-8 text-center"
-              >
-                <div className="text-6xl mb-4">{item.icon}</div>
-                <h3 className="text-2xl font-bold text-black mb-2">{item.title}</h3>
-                <p className="text-gray-600">{item.desc}</p>
-              </motion.div>
-            ))}
+              { icon: Store, title: 'Retailers & Boutiques', desc: 'Wholesale pricing that protects your margins while delivering premium quality your customers will love.' },
+              { icon: GraduationCap, title: 'Schools & Institutions', desc: 'Durable, well-fitted uniforms manufactured to your specifications with consistent sizing.' },
+              { icon: Building2, title: 'Corporate Buyers', desc: 'Professional corporate wear and employee uniforms with custom branding and flexible delivery.' },
+            ].map((item, idx) => {
+              const Icon = item.icon;
+              return (
+                <motion.div
+                  key={idx}
+                  variants={itemVariants}
+                  className="p-10 bg-[#FAF8F5] rounded-sm border border-gray-100 text-center hover:shadow-[0_20px_50px_rgba(0,0,0,0.06)] transition-all duration-400"
+                >
+                  <div className="w-14 h-14 bg-[#C8102E]/10 rounded-sm flex items-center justify-center mx-auto mb-6">
+                    <Icon className="w-7 h-7 text-[#C8102E]" />
+                  </div>
+                  <h3 className="text-xl font-semibold text-[#0A0A0A] mb-3">{item.title}</h3>
+                  <p className="text-gray-500 text-sm leading-relaxed font-light">{item.desc}</p>
+                </motion.div>
+              );
+            })}
           </motion.div>
         </motion.section>
 
-        {/* Benefits */}
         <motion.section
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="mb-20 bg-gray-50 p-12 rounded-lg"
+          className="mb-28"
         >
-          <h2 className="geo-heading text-4xl md:text-5xl mb-12 text-center">
-            Benefits of <span className="text-[#E60023]">Bulk Orders</span>
-          </h2>
+          <div className="text-center mb-16">
+            <p className="geo-label mb-4">Why Order in Bulk</p>
+            <h2 className="geo-heading text-4xl md:text-5xl">
+              Advantages of <span className="text-[#C8102E]">Partnering with Us</span>
+            </h2>
+          </div>
           <motion.div
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            className="grid grid-cols-1 md:grid-cols-2 gap-8"
+            className="grid grid-cols-1 md:grid-cols-2 gap-6"
           >
             {[
-              { title: 'Better Pricing', desc: 'Volume discounts that increase with order size' },
-              { title: 'Customization', desc: 'Custom designs, logos, and branding options' },
-              { title: 'Quality Control', desc: 'Dedicated quality checks for large batches' },
-              { title: 'Reliable Supply', desc: 'Guaranteed delivery timelines for bulk orders' },
-              { title: 'Flexible Payment', desc: 'Installment options for large orders' },
-              { title: 'Direct Support', desc: 'Dedicated account manager for your business' },
+              { title: 'Volume-Based Pricing', desc: 'Deeper discounts as your order size increases — maximise value at every scale.' },
+              { title: 'Full Customization', desc: 'Custom designs, logo embroidery, label printing, and bespoke sizing available.' },
+              { title: 'Rigorous Quality Control', desc: 'Dedicated quality checks for every batch ensure consistency across thousands of units.' },
+              { title: 'On-Time Delivery', desc: 'Committed production schedules and reliable logistics for predictable planning.' },
+              { title: 'Flexible Payment Terms', desc: 'Instalment options and milestone-based payment plans for large orders.' },
+              { title: 'Dedicated Account Manager', desc: 'A single point of contact who understands your needs and keeps your orders on track.' },
             ].map((item, idx) => (
               <motion.div
                 key={idx}
                 variants={itemVariants}
-                className="flex gap-4 p-6 bg-white rounded-lg border border-gray-200"
+                className="flex gap-5 p-6 bg-white rounded-sm border border-gray-100 hover:shadow-md transition-all duration-300"
               >
-                <div className="w-12 h-12 rounded-full bg-[#E60023] text-white flex items-center justify-center shrink-0 font-bold text-lg">
-                  ✓
+                <div className="w-10 h-10 rounded-full bg-[#C8102E] text-white flex items-center justify-center shrink-0">
+                  <Check className="w-5 h-5" />
                 </div>
                 <div>
-                  <h3 className="font-bold text-black text-lg">{item.title}</h3>
-                  <p className="text-gray-600">{item.desc}</p>
+                  <h3 className="font-semibold text-[#0A0A0A] mb-1">{item.title}</h3>
+                  <p className="text-gray-500 text-sm leading-relaxed font-light">{item.desc}</p>
                 </div>
               </motion.div>
             ))}
           </motion.div>
         </motion.section>
 
-        {/* Process Timeline */}
         <motion.section
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="mb-20"
+          className="mb-28"
         >
-          <h2 className="geo-heading text-4xl md:text-5xl mb-12 text-center">
-            Our <span className="text-[#E60023]">Process</span>
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-4 md:gap-0">
-            {['Inquiry', 'Discussion', 'Production', 'Delivery'].map((step, idx) => (
+          <div className="text-center mb-16">
+            <p className="geo-label mb-4">How It Works</p>
+            <h2 className="geo-heading text-4xl md:text-5xl">
+              A Simple, <span className="text-[#C8102E]">Streamlined Process</span>
+            </h2>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+            {[
+              { step: 1, title: 'Submit Enquiry', desc: 'Share your requirements — quantity, customization, and timeline.' },
+              { step: 2, title: 'Get Your Quote', desc: 'Receive a detailed, transparent quote within 24 hours.' },
+              { step: 3, title: 'Production Begins', desc: 'We manufacture your order with full quality oversight.' },
+              { step: 4, title: 'Reliable Delivery', desc: 'Safe, insured delivery to your doorstep on the agreed date.' },
+            ].map((item, idx) => (
               <motion.div
                 key={idx}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: idx * 0.1 }}
                 viewport={{ once: true }}
-                className="relative"
+                className="text-center relative"
               >
-                <div className="flex flex-col items-center md:items-start">
-                  <div className="w-16 h-16 bg-[#E60023] text-white rounded-full flex items-center justify-center font-bold text-xl mb-4 md:mb-0">
-                    {idx + 1}
-                  </div>
-                  <h3 className="font-bold text-black text-lg mt-4 md:mt-0">{step}</h3>
-                  <p className="text-sm text-gray-600 mt-2 text-center md:text-left">
-                    {idx === 0 && 'Submit your bulk order requirements'}
-                    {idx === 1 && 'Discuss pricing and customization'}
-                    {idx === 2 && 'We manufacture your order'}
-                    {idx === 3 && 'Fast and safe delivery'}
-                  </p>
+                <div className="w-14 h-14 bg-[#C8102E] text-white rounded-full flex items-center justify-center font-display font-bold text-xl mx-auto mb-5">
+                  {item.step}
                 </div>
+                <h3 className="font-semibold text-[#0A0A0A] text-lg mb-2">{item.title}</h3>
+                <p className="text-gray-500 text-sm leading-relaxed font-light">{item.desc}</p>
                 {idx < 3 && (
-                  <div className="hidden md:block absolute top-8 left-16 w-full h-0.5 bg-[#E60023] -z-10" />
+                  <div className="hidden md:block absolute top-7 left-[60%] w-[80%] h-[1px] bg-gray-200" />
                 )}
               </motion.div>
             ))}
           </div>
         </motion.section>
 
-        {/* Bulk Order Form */}
         <motion.section
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="bg-gradient-to-br from-white to-gray-50 border-2 border-gray-200 p-12 rounded-lg max-w-2xl mx-auto"
+          className="max-w-2xl mx-auto"
         >
-          <h2 className="geo-heading text-3xl md:text-4xl mb-8 text-center">
-            Get Started with <span className="text-[#E60023]">Your Order</span>
-          </h2>
-          <form onSubmit={handleSubmit} className="space-y-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <input
-                type="text"
-                name="name"
-                placeholder="Your Name *"
-                value={formData.name}
-                onChange={handleChange}
-                required
-                className="px-6 py-3 border-2 border-gray-300 focus:border-[#E60023] outline-none transition-colors"
-              />
-              <input
-                type="text"
-                name="businessName"
-                placeholder="Business Name *"
-                value={formData.businessName}
-                onChange={handleChange}
-                required
-                className="px-6 py-3 border-2 border-gray-300 focus:border-[#E60023] outline-none transition-colors"
-              />
+          <div className="bg-[#FAF8F5] border border-gray-100 p-10 md:p-14 rounded-sm">
+            <div className="text-center mb-10">
+              <p className="geo-label mb-3">Get Started</p>
+              <h2 className="geo-heading text-3xl md:text-4xl mb-3">
+                Request Your <span className="text-[#C8102E]">Quote</span>
+              </h2>
+              <p className="text-gray-500 text-sm font-light">
+                Fill in the details below and our team will respond within 24 hours.
+              </p>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <input
-                type="number"
-                name="quantity"
-                placeholder="Quantity Required *"
-                value={formData.quantity}
+            <form onSubmit={handleSubmit} className="space-y-5">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                <input
+                  type="text"
+                  name="name"
+                  placeholder="Your Name *"
+                  value={formData.name}
+                  onChange={handleChange}
+                  required
+                  className="px-5 py-3.5 border border-gray-200 bg-white focus:border-[#C8102E] outline-none transition-colors text-sm rounded-sm"
+                />
+                <input
+                  type="text"
+                  name="businessName"
+                  placeholder="Business / Institution Name *"
+                  value={formData.businessName}
+                  onChange={handleChange}
+                  required
+                  className="px-5 py-3.5 border border-gray-200 bg-white focus:border-[#C8102E] outline-none transition-colors text-sm rounded-sm"
+                />
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                <input
+                  type="number"
+                  name="quantity"
+                  placeholder="Quantity Required *"
+                  value={formData.quantity}
+                  onChange={handleChange}
+                  required
+                  className="px-5 py-3.5 border border-gray-200 bg-white focus:border-[#C8102E] outline-none transition-colors text-sm rounded-sm"
+                />
+                <input
+                  type="tel"
+                  name="phone"
+                  placeholder="Phone / WhatsApp *"
+                  value={formData.phone}
+                  onChange={handleChange}
+                  required
+                  className="px-5 py-3.5 border border-gray-200 bg-white focus:border-[#C8102E] outline-none transition-colors text-sm rounded-sm"
+                />
+              </div>
+              <textarea
+                name="message"
+                placeholder="Tell us about your needs — customization, delivery location, timeline, etc."
+                value={formData.message}
                 onChange={handleChange}
-                required
-                className="px-6 py-3 border-2 border-gray-300 focus:border-[#E60023] outline-none transition-colors"
+                rows={5}
+                className="w-full px-5 py-3.5 border border-gray-200 bg-white focus:border-[#C8102E] outline-none transition-colors text-sm resize-none rounded-sm"
               />
-              <input
-                type="tel"
-                name="phone"
-                placeholder="Phone / WhatsApp *"
-                value={formData.phone}
-                onChange={handleChange}
-                required
-                className="px-6 py-3 border-2 border-gray-300 focus:border-[#E60023] outline-none transition-colors"
-              />
-            </div>
-            <textarea
-              name="message"
-              placeholder="Additional Details (customization, delivery location, etc.)"
-              value={formData.message}
-              onChange={handleChange}
-              rows={5}
-              className="w-full px-6 py-3 border-2 border-gray-300 focus:border-[#E60023] outline-none transition-colors resize-none"
-            />
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              type="submit"
-              className="w-full geo-btn-primary text-lg"
-            >
-              Submit Inquiry
-            </motion.button>
-            <p className="text-xs text-gray-500 text-center">
-              We'll get back to you within 24 hours with a custom quote
-            </p>
-          </form>
+              <motion.button
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.97 }}
+                type="submit"
+                className="w-full geo-btn-primary text-sm uppercase tracking-[0.1em]"
+              >
+                Submit Enquiry
+              </motion.button>
+              <p className="text-[11px] text-gray-400 text-center font-light">
+                No obligation. We will respond with a detailed quote within 24 hours.
+              </p>
+            </form>
+          </div>
         </motion.section>
 
-        {/* Direct Contact CTA */}
         <motion.section
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -271,16 +297,16 @@ export default function BulkOrders() {
           viewport={{ once: true }}
           className="mt-20 text-center"
         >
-          <h3 className="text-2xl font-bold text-black mb-6">Prefer to talk directly?</h3>
+          <p className="text-gray-500 text-base mb-6 font-light">Prefer a direct conversation?</p>
           <motion.a
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
+            whileHover={{ scale: 1.03 }}
+            whileTap={{ scale: 0.97 }}
             href="https://wa.me/917XXXXXXXXXXXX"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-block geo-btn-primary text-lg"
+            className="inline-block geo-btn-primary text-sm uppercase tracking-[0.1em]"
           >
-            💬 WhatsApp Us Now
+            Chat on WhatsApp
           </motion.a>
         </motion.section>
       </div>

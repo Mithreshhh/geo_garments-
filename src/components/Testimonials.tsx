@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { Star } from 'lucide-react';
 
 interface Testimonial {
   id: number;
@@ -7,7 +8,7 @@ interface Testimonial {
   company: string;
   rating: number;
   quote: string;
-  image: string;
+  initials: string;
 }
 
 export default function Testimonials() {
@@ -15,32 +16,32 @@ export default function Testimonials() {
     {
       id: 1,
       name: 'Rajesh Kumar',
-      role: 'Shop Owner',
+      role: 'Retail Store Owner',
       company: 'Premium Wear Store',
       rating: 5,
       quote:
-        'The quality is exceptional and the pricing is unbeatable. My customers love the fit and durability. Highly recommended!',
-      image: 'https://via.placeholder.com/100x100?text=R',
+        'The quality is genuinely outstanding — my customers notice the difference immediately. And the factory-direct pricing means better margins for my business. A partnership I truly value.',
+      initials: 'RK',
     },
     {
       id: 2,
       name: 'Priya Sharma',
-      role: 'Bulk Buyer',
+      role: 'Procurement Head',
       company: 'Corporate Uniforms Ltd',
       rating: 5,
       quote:
-        'Working with Geo Garments has been smooth and professional. They delivered exactly 2000 uniforms on time with perfect finish.',
-      image: 'https://via.placeholder.com/100x100?text=P',
+        'We ordered 2,000 uniforms with custom branding. Every single piece was delivered on time, perfectly finished. Their professionalism and reliability are second to none.',
+      initials: 'PS',
     },
     {
       id: 3,
       name: 'Arjun Patel',
-      role: 'Fashion Enthusiast',
-      company: 'Individual Customer',
+      role: 'Repeat Customer',
+      company: 'Individual Buyer',
       rating: 5,
       quote:
-        'Finally found premium clothing at factory prices. The fit is perfect and the craftsmanship is evident. 10/10 experience!',
-      image: 'https://via.placeholder.com/100x100?text=A',
+        'I have tried dozens of brands, and nothing comes close to this quality-to-price ratio. The fit is impeccable, the fabrics feel luxurious, and the service is always personal.',
+      initials: 'AP',
     },
   ];
 
@@ -56,35 +57,35 @@ export default function Testimonials() {
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 30, scale: 0.9 },
+    hidden: { opacity: 0, y: 30 },
     visible: {
       opacity: 1,
       y: 0,
-      scale: 1,
       transition: { duration: 0.6 },
     },
   };
 
   return (
-    <section className="py-20 md:py-32 bg-white">
+    <section className="py-24 md:py-36 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="text-center mb-20"
         >
-          <h2 className="geo-heading text-4xl md:text-5xl mb-4">
-            What Our <span className="text-[#E60023]">Customers</span> Say
+          <p className="geo-label mb-4">Testimonials</p>
+          <h2 className="geo-heading text-4xl md:text-5xl mb-5">
+            Trusted by Thousands
+            <br />
+            <span className="text-[#C8102E]">Across India</span>
           </h2>
-          <p className="text-gray-600 text-lg">
-            Real testimonials from real customers who trust Geo Garments
+          <p className="text-gray-500 text-lg font-light max-w-xl mx-auto">
+            Hear from retailers, institutions, and individual customers who have made Geo Garments their preferred choice.
           </p>
         </motion.div>
 
-        {/* Testimonials Grid */}
         <motion.div
           variants={containerVariants}
           initial="hidden"
@@ -96,55 +97,29 @@ export default function Testimonials() {
             <motion.div
               key={testimonial.id}
               variants={itemVariants}
-              whileHover={{ y: -12, transitionDuration: 0.3 }}
-              className="geo-card p-8 bg-gradient-to-br from-white to-gray-50 border border-gray-100 rounded-lg"
+              whileHover={{ y: -8 }}
+              className="p-8 bg-[#FAF8F5] border border-gray-100 rounded-sm hover:shadow-[0_20px_50px_rgba(0,0,0,0.06)] transition-all duration-400"
             >
-              {/* Rating */}
-              <motion.div
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                transition={{ duration: 0.4, delay: 0.1 }}
-                className="flex gap-1 mb-4"
-              >
+              <div className="flex gap-1 mb-6">
                 {[...Array(testimonial.rating)].map((_, i) => (
-                  <motion.span
-                    key={i}
-                    initial={{ scale: 0 }}
-                    whileInView={{ scale: 1 }}
-                    transition={{ duration: 0.3, delay: i * 0.1 }}
-                    className="text-[#E60023] text-xl"
-                  >
-                    ★
-                  </motion.span>
+                  <Star key={i} className="w-4 h-4 fill-[#C8102E] text-[#C8102E]" />
                 ))}
-              </motion.div>
+              </div>
 
-              {/* Quote */}
-              <motion.p
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                transition={{ duration: 0.4, delay: 0.2 }}
-                className="text-gray-700 italic mb-6 leading-relaxed"
-              >
-                "{testimonial.quote}"
-              </motion.p>
+              <p className="text-gray-700 text-[15px] leading-relaxed mb-8 font-light italic">
+                &ldquo;{testimonial.quote}&rdquo;
+              </p>
 
-              {/* Author */}
               <div className="flex items-center gap-4 pt-6 border-t border-gray-200">
-                <motion.img
-                  initial={{ scale: 0 }}
-                  whileInView={{ scale: 1 }}
-                  transition={{ duration: 0.4, delay: 0.2 }}
-                  src={testimonial.image}
-                  alt={testimonial.name}
-                  className="w-12 h-12 rounded-full object-cover bg-[#E60023]"
-                />
+                <div className="w-11 h-11 rounded-full bg-[#C8102E] text-white flex items-center justify-center text-sm font-bold">
+                  {testimonial.initials}
+                </div>
                 <div>
-                  <h4 className="font-bold text-black">
+                  <h4 className="font-semibold text-[#0A0A0A] text-sm">
                     {testimonial.name}
                   </h4>
-                  <p className="text-sm text-gray-600">
-                    {testimonial.role} at {testimonial.company}
+                  <p className="text-xs text-gray-400">
+                    {testimonial.role}, {testimonial.company}
                   </p>
                 </div>
               </div>
@@ -152,18 +127,17 @@ export default function Testimonials() {
           ))}
         </motion.div>
 
-        {/* Additional Stats */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.3 }}
           viewport={{ once: true }}
-          className="grid grid-cols-3 gap-8 mt-16 text-center"
+          className="grid grid-cols-3 gap-8 mt-20 max-w-2xl mx-auto"
         >
           {[
-            { number: '10K+', label: 'Happy Customers' },
-            { number: '4.9★', label: 'Average Rating' },
-            { number: '100%', label: 'Satisfaction' },
+            { number: '10,000+', label: 'Happy Customers' },
+            { number: '4.9/5', label: 'Average Rating' },
+            { number: '99%', label: 'Would Recommend' },
           ].map((stat, index) => (
             <motion.div
               key={index}
@@ -171,11 +145,12 @@ export default function Testimonials() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               viewport={{ once: true }}
+              className="text-center"
             >
-              <p className="text-3xl md:text-4xl font-black text-[#E60023] mb-2">
+              <p className="text-3xl md:text-4xl font-display font-bold text-[#C8102E] mb-1">
                 {stat.number}
               </p>
-              <p className="text-gray-600 text-sm md:text-base">{stat.label}</p>
+              <p className="text-gray-400 text-xs uppercase tracking-[0.1em]">{stat.label}</p>
             </motion.div>
           ))}
         </motion.div>
