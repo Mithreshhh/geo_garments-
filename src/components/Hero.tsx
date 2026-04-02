@@ -9,8 +9,8 @@ export default function Hero() {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.2,
-        delayChildren: 0.3,
+        staggerChildren: 0.15,
+        delayChildren: 0.2,
       },
     },
   };
@@ -26,31 +26,31 @@ export default function Hero() {
 
   return (
     <div className="relative w-full min-h-screen flex items-center justify-center bg-[#FAF8F5] overflow-hidden pt-20">
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-[-10%] left-[-5%] w-[500px] h-[500px] bg-[#C8102E] rounded-full blur-[160px] opacity-[0.04]" />
-        <div className="absolute bottom-[-10%] right-[-5%] w-[500px] h-[500px] bg-[#C8102E] rounded-full blur-[160px] opacity-[0.04]" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] border border-gray-200/30 rounded-full" />
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-[-10%] left-[-5%] w-[400px] h-[400px] bg-[#C8102E] rounded-full blur-[160px] opacity-[0.04]" />
+        <div className="absolute bottom-[-10%] right-[-5%] w-[400px] h-[400px] bg-[#C8102E] rounded-full blur-[160px] opacity-[0.04]" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] border border-gray-200/30 rounded-full" />
       </div>
 
       <motion.div
         variants={containerVariants}
         initial="hidden"
         animate="visible"
-        className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center"
+        className="relative z-10 max-w-3xl mx-auto px-6 sm:px-8 text-center"
       >
         <motion.div
           variants={itemVariants}
-          className="mb-8 inline-flex items-center gap-2 bg-white border border-gray-200 px-5 py-2.5 rounded-full shadow-sm"
+          className="mb-6 inline-flex items-center gap-2 bg-white border border-gray-200 px-5 py-2 rounded-full shadow-sm"
         >
-          <span className="w-2 h-2 bg-[#C8102E] rounded-full animate-pulse" />
-          <p className="text-[#C8102E] font-semibold text-xs tracking-[0.15em] uppercase">
+          <span className="w-1.5 h-1.5 bg-[#C8102E] rounded-full animate-pulse" />
+          <p className="text-[#C8102E] font-semibold text-[11px] tracking-[0.15em] uppercase">
             Factory-Direct — No Middlemen, No Markups
           </p>
         </motion.div>
 
         <motion.h1
           variants={itemVariants}
-          className="font-display text-5xl md:text-7xl lg:text-8xl font-bold text-[#0A0A0A] mb-6 leading-[1.05]"
+          className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-[#0A0A0A] mb-5 leading-[1.1]"
         >
           Expertly Crafted
           <br />
@@ -59,7 +59,7 @@ export default function Hero() {
 
         <motion.p
           variants={itemVariants}
-          className="text-gray-500 text-lg md:text-xl mb-10 max-w-2xl mx-auto font-light leading-relaxed"
+          className="text-gray-500 text-base md:text-lg mb-8 max-w-xl mx-auto font-light leading-relaxed"
         >
           Precision-tailored by master artisans. Premium fabrics, honest pricing,
           and a fit that speaks for itself.
@@ -67,7 +67,7 @@ export default function Hero() {
 
         <motion.div
           variants={itemVariants}
-          className="flex flex-wrap justify-center gap-x-8 gap-y-3 mb-10 text-sm font-medium text-gray-700"
+          className="flex flex-wrap justify-center gap-x-6 gap-y-2 mb-8 text-sm font-medium text-gray-700"
         >
           {['Master Tailored', 'Premium Fabrics', 'Honest Pricing'].map((item) => (
             <div key={item} className="flex items-center gap-2">
@@ -81,7 +81,7 @@ export default function Hero() {
 
         <motion.div
           variants={itemVariants}
-          className="flex flex-col sm:flex-row justify-center gap-4"
+          className="flex flex-col sm:flex-row justify-center gap-3"
         >
           <motion.button
             whileHover={{ scale: 1.03 }}
@@ -103,7 +103,7 @@ export default function Hero() {
 
         <motion.div
           variants={itemVariants}
-          className="mt-16 flex justify-center gap-12 text-center"
+          className="mt-12 flex justify-center gap-10 text-center"
         >
           {[
             { value: '10,000+', label: 'Customers Served' },
@@ -111,8 +111,8 @@ export default function Hero() {
             { value: '50+', label: 'Expert Tailors' },
           ].map((stat) => (
             <div key={stat.label}>
-              <p className="text-2xl md:text-3xl font-bold text-[#0A0A0A]">{stat.value}</p>
-              <p className="text-xs text-gray-400 mt-1 tracking-wide uppercase">{stat.label}</p>
+              <p className="text-xl md:text-2xl font-bold text-[#0A0A0A]">{stat.value}</p>
+              <p className="text-[10px] text-gray-400 mt-1 tracking-wide uppercase">{stat.label}</p>
             </div>
           ))}
         </motion.div>
@@ -122,12 +122,12 @@ export default function Hero() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.5, duration: 1 }}
-        className="absolute bottom-10 left-1/2 -translate-x-1/2"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2"
       >
         <motion.div
           animate={{ y: [0, 8, 0] }}
           transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
-          className="flex flex-col items-center gap-2 text-gray-400"
+          className="flex flex-col items-center gap-1.5 text-gray-400"
         >
           <span className="text-[10px] font-medium uppercase tracking-[0.2em]">Scroll</span>
           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
