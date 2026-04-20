@@ -1,4 +1,3 @@
-import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 
 export default function About() {
@@ -6,16 +5,18 @@ export default function About() {
 
   return (
     <div className="min-h-screen bg-white pt-20">
-      <section className="py-24 md:py-36 bg-[#0A0A0A] text-white relative overflow-hidden">
+      <section className="py-24 md:py-36 text-white relative overflow-hidden" style={{ background: 'linear-gradient(180deg, #0B0A08 0%, #1A1815 60%, #0B0A08 100%)' }}>
         <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-[-20%] right-[-10%] w-[500px] h-[500px] bg-[#C8102E] rounded-full blur-[200px] opacity-[0.06]" />
+          <div className="absolute top-[-20%] right-[-10%] w-[500px] h-[500px] bg-[#B8935B] rounded-full blur-[200px] opacity-[0.12]" />
+          <div className="absolute bottom-[-15%] left-[-10%] w-[400px] h-[400px] bg-[#B8935B] rounded-full blur-[180px] opacity-[0.08]" />
         </div>
+        <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#B8935B]/40 to-transparent z-20" />
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#C8102E] mb-6">
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#B8935B] mb-6">
             Our Story
           </p>
           <h1 className="font-display text-5xl md:text-7xl font-bold mb-6">
-            About <span className="text-[#C8102E]">Geo Garments</span>
+            About <span className="text-[#B8935B]">Geo Garments</span>
           </h1>
           <p className="text-lg md:text-xl text-gray-400 font-light max-w-2xl mx-auto">
             Where master craftsmanship meets factory-direct integrity — delivering clothing
@@ -38,7 +39,7 @@ export default function About() {
             <div className="space-y-6">
               <p className="geo-label">Our Beginning</p>
               <h2 className="geo-heading text-4xl md:text-5xl">
-                The Geo <span className="text-[#C8102E]">Story</span>
+                The Geo <span className="text-[#B8935B]">Story</span>
               </h2>
               <p className="text-gray-600 text-base leading-relaxed">
                 Founded in Kompally, Hyderabad, Geo Garments was born from a clear conviction: 
@@ -64,11 +65,11 @@ export default function About() {
           <div className="text-center mb-16">
             <p className="geo-label mb-4">Our Purpose</p>
             <h2 className="geo-heading text-4xl md:text-5xl">
-              Mission <span className="text-[#C8102E]">&</span> Vision
+              Mission <span className="text-[#B8935B]">&</span> Vision
             </h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="p-10 bg-[#FAF8F5] border-l-2 border-[#C8102E] rounded-sm">
+            <div className="p-10 bg-[#F6F1E8] border-l-2 border-[#B8935B] rounded-sm">
               <p className="geo-label mb-4">Mission</p>
               <p className="text-gray-600 leading-relaxed">
                 To deliver expertly tailored clothing at factory-direct prices, making 
@@ -76,7 +77,7 @@ export default function About() {
                 artisans and strengthening local manufacturing.
               </p>
             </div>
-            <div className="p-10 bg-[#FAF8F5] border-l-2 border-[#C8102E] rounded-sm">
+            <div className="p-10 bg-[#F6F1E8] border-l-2 border-[#B8935B] rounded-sm">
               <p className="geo-label mb-4">Vision</p>
               <p className="text-gray-600 leading-relaxed">
                 To become India&apos;s most trusted factory-direct clothing brand — recognised for 
@@ -91,7 +92,7 @@ export default function About() {
           <div className="text-center mb-16">
             <p className="geo-label mb-4">What We Stand For</p>
             <h2 className="geo-heading text-4xl md:text-5xl">
-              Our <span className="text-[#C8102E]">Values</span>
+              Our <span className="text-[#B8935B]">Values</span>
             </h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -103,12 +104,12 @@ export default function About() {
             ].map((value, idx) => (
               <div
                 key={idx}
-                className="p-8 bg-[#FAF8F5] rounded-sm border border-gray-100 text-center"
+                className="p-8 bg-[#F6F1E8] rounded-sm border border-gray-100 text-center"
               >
-                <div className="w-12 h-12 bg-[#C8102E] text-white rounded-full flex items-center justify-center font-display font-bold text-lg mx-auto mb-5">
+                <div className="w-12 h-12 bg-[#0B0A08] text-[#B8935B] rounded-full flex items-center justify-center font-display font-bold text-lg mx-auto mb-5 ring-1 ring-[#B8935B]/30">
                   {idx + 1}
                 </div>
-                <h3 className="font-semibold text-[#0A0A0A] text-lg mb-3">{value.title}</h3>
+                <h3 className="font-semibold text-[#0B0A08] text-lg mb-3">{value.title}</h3>
                 <p className="text-gray-500 text-sm leading-relaxed font-light">{value.desc}</p>
               </div>
             ))}
@@ -119,7 +120,7 @@ export default function About() {
           <div className="text-center mb-16">
             <p className="geo-label mb-4">Our Process</p>
             <h2 className="geo-heading text-4xl md:text-5xl">
-              How We <span className="text-[#C8102E]">Work</span>
+              How We <span className="text-[#B8935B]">Work</span>
             </h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
@@ -130,17 +131,17 @@ export default function About() {
               { step: 4, title: 'Quality Assurance', desc: 'Multi-point inspection ensures only perfect garments leave our facility.' },
             ].map((item) => (
               <div key={item.step} className="text-center">
-                <div className="w-14 h-14 bg-[#C8102E] text-white rounded-full flex items-center justify-center font-display font-bold text-xl mx-auto mb-5">
+                <div className="w-14 h-14 bg-[#0B0A08] text-[#B8935B] rounded-full flex items-center justify-center font-display font-bold text-xl mx-auto mb-5 ring-1 ring-[#B8935B]/30">
                   {item.step}
                 </div>
-                <h3 className="font-semibold text-[#0A0A0A] text-lg mb-2">{item.title}</h3>
+                <h3 className="font-semibold text-[#0B0A08] text-lg mb-2">{item.title}</h3>
                 <p className="text-gray-500 text-sm leading-relaxed font-light">{item.desc}</p>
               </div>
             ))}
           </div>
         </section>
 
-        <section className="bg-[#0A0A0A] text-white py-20 px-8 rounded-sm mb-28">
+        <section className="bg-[#0B0A08] text-white py-20 px-8 rounded-sm mb-28">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             {[
               { number: '2,000+', label: 'Orders Fulfilled' },
@@ -149,7 +150,7 @@ export default function About() {
               { number: '4.9/5', label: 'Average Rating' },
             ].map((stat, idx) => (
               <div key={idx}>
-                <p className="text-3xl md:text-4xl font-display font-bold text-[#C8102E] mb-2">
+                <p className="text-3xl md:text-4xl font-display font-bold text-[#B8935B] mb-2">
                   {stat.number}
                 </p>
                 <p className="text-gray-400 text-sm font-light">{stat.label}</p>
@@ -161,19 +162,17 @@ export default function About() {
         <section className="text-center">
           <p className="geo-label mb-4">Get Started</p>
           <h2 className="geo-heading text-3xl md:text-4xl mb-5">
-            Experience the Geo <span className="text-[#C8102E]">Difference</span>
+            Experience the Geo <span className="text-[#B8935B]">Difference</span>
           </h2>
           <p className="text-gray-500 text-lg mb-10 max-w-2xl mx-auto font-light">
             Premium quality, honest pricing, and a commitment to craftsmanship that speaks for itself.
           </p>
-          <motion.button
-            whileHover={{ scale: 1.03 }}
-            whileTap={{ scale: 0.97 }}
+          <button
             onClick={() => navigate('/products')}
-            className="geo-btn-primary text-sm uppercase tracking-[0.1em]"
+            className="geo-btn-primary text-sm uppercase tracking-[0.1em] active:scale-[0.97]"
           >
             Explore Our Collection
-          </motion.button>
+          </button>
         </section>
       </div>
     </div>

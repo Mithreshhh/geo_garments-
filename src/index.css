@@ -2,11 +2,22 @@
 
 @layer theme {
   :root {
-    --color-geo-red: #C8102E;
-    --color-geo-dark: #0A0A0A;
-    --color-geo-gold: #C9A84C;
+    --color-geo-onyx: #0B0A08;
+    --color-geo-onyx-soft: #1A1815;
+    --color-geo-onyx-deep: #050403;
+    --color-geo-gold: #B8935B;
+    --color-geo-gold-soft: #D4B88A;
+    --color-geo-gold-deep: #8A6E42;
+    --color-geo-ivory: #F6F1E8;
+    --color-geo-pearl: #EDE6D8;
+    --color-geo-sand: #E5DCC9;
+    --color-geo-stone: #6B625A;
+    --color-geo-stone-soft: #9A9188;
     --color-geo-white: #FFFFFF;
-    --color-geo-cream: #FAF8F5;
+
+    --color-geo-red: #B8935B;
+    --color-geo-dark: #0B0A08;
+    --color-geo-cream: #F6F1E8;
   }
 }
 
@@ -15,47 +26,8 @@
     scroll-behavior: smooth;
   }
 
-  .scroll-fade-in {
-    animation: scrollFadeIn 0.8s ease-out forwards;
-    opacity: 0;
-  }
-
-  @keyframes scrollFadeIn {
-    from {
-      opacity: 0;
-      transform: translateY(30px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  .stagger-item {
-    animation: staggerItem 0.6s ease-out forwards;
-  }
-
-  @keyframes staggerItem {
-    from {
-      opacity: 0;
-      transform: translateY(20px) scale(0.95);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0) scale(1);
-    }
-  }
-
-  .hover-scale {
-    @apply transition-transform duration-300 hover:scale-105;
-  }
-
-  .hover-lift {
-    @apply transition-all duration-300 hover:shadow-2xl hover:-translate-y-2;
-  }
-
   .geo-btn-primary {
-    @apply px-8 py-3.5 bg-[var(--color-geo-red)] text-white font-semibold tracking-wide transition-all duration-300 hover:bg-red-800 active:scale-95;
+    @apply inline-flex items-center justify-center px-8 py-3.5 bg-[var(--color-geo-onyx)] text-white font-semibold tracking-wide transition-all duration-300 hover:bg-[var(--color-geo-gold)] hover:text-[var(--color-geo-onyx)] active:scale-95;
     position: relative;
     overflow: hidden;
     letter-spacing: 0.04em;
@@ -68,7 +40,7 @@
     left: -100%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+    background: linear-gradient(90deg, transparent, rgba(184, 147, 91, 0.25), transparent);
     transition: left 0.5s ease;
   }
 
@@ -77,140 +49,177 @@
   }
 
   .geo-btn-secondary {
-    @apply px-8 py-3.5 border-2 border-[var(--color-geo-dark)] text-[var(--color-geo-dark)] font-semibold tracking-wide transition-all duration-300 hover:bg-[var(--color-geo-dark)] hover:text-white;
+    @apply inline-flex items-center justify-center px-8 py-3.5 border border-[var(--color-geo-onyx)] text-[var(--color-geo-onyx)] font-semibold tracking-wide transition-all duration-300 hover:bg-[var(--color-geo-onyx)] hover:text-[var(--color-geo-gold-soft)];
+    letter-spacing: 0.04em;
+  }
+
+  .geo-btn-gold {
+    @apply inline-flex items-center justify-center px-8 py-3.5 bg-[var(--color-geo-gold)] text-[var(--color-geo-onyx)] font-semibold tracking-wide transition-all duration-300 hover:bg-[var(--color-geo-gold-soft)] active:scale-95;
+    letter-spacing: 0.04em;
+  }
+
+  .geo-btn-ghost {
+    @apply inline-flex items-center justify-center px-8 py-3.5 border border-white/40 text-white font-semibold tracking-wide transition-all duration-300 hover:border-[var(--color-geo-gold)] hover:text-[var(--color-geo-gold-soft)];
     letter-spacing: 0.04em;
   }
 
   .geo-heading {
-    @apply font-bold text-[var(--color-geo-dark)] text-4xl md:text-5xl lg:text-6xl leading-tight;
+    @apply font-bold text-[var(--color-geo-onyx)] text-4xl md:text-5xl lg:text-6xl leading-tight;
     font-family: 'Playfair Display', Georgia, serif;
+    letter-spacing: -0.01em;
   }
 
   .geo-subheading {
-    @apply text-lg md:text-xl text-gray-600 font-light leading-relaxed;
+    @apply text-lg md:text-xl text-[var(--color-geo-stone)] font-light leading-relaxed;
     font-family: 'Inter', system-ui, sans-serif;
   }
 
   .geo-card {
-    @apply bg-white border border-gray-100 p-6 transition-all duration-400;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+    @apply bg-white border border-[var(--color-geo-pearl)] p-6 transition-all duration-300;
+    box-shadow: 0 1px 3px rgba(11, 10, 8, 0.04);
   }
 
   .geo-card:hover {
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
-    border-color: transparent;
+    box-shadow: 0 20px 50px rgba(11, 10, 8, 0.08);
+    border-color: var(--color-geo-gold);
   }
 
   .geo-label {
-    @apply text-xs font-semibold uppercase tracking-[0.2em] text-[var(--color-geo-red)];
+    @apply text-xs font-semibold uppercase tracking-[0.25em] text-[var(--color-geo-gold)];
     font-family: 'Inter', system-ui, sans-serif;
   }
 
-  .fade-in {
-    animation: fadeIn 0.6s ease-in;
+  .geo-label-gold {
+    @apply text-xs font-semibold uppercase tracking-[0.3em] text-[var(--color-geo-gold)];
+    font-family: 'Inter', system-ui, sans-serif;
   }
 
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
+  .geo-label-dark {
+    @apply text-xs font-semibold uppercase tracking-[0.25em] text-[var(--color-geo-onyx)];
+    font-family: 'Inter', system-ui, sans-serif;
   }
 
-  .slide-in-left {
-    animation: slideInLeft 0.6s ease-out;
+  .geo-divider-gold {
+    display: inline-block;
+    width: 40px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--color-geo-gold), transparent);
   }
 
-  @keyframes slideInLeft {
-    from {
-      opacity: 0;
-      transform: translateX(-50px);
-    }
-    to {
-      opacity: 1;
-      transform: translateX(0);
-    }
+  .geo-section-ivory {
+    background: linear-gradient(180deg, #FFFFFF 0%, #F6F1E8 50%, #F6F1E8 100%);
   }
 
-  .slide-in-right {
-    animation: slideInRight 0.6s ease-out;
+  .geo-section-onyx {
+    background: linear-gradient(180deg, #0B0A08 0%, #1A1815 50%, #0B0A08 100%);
   }
 
-  @keyframes slideInRight {
-    from {
-      opacity: 0;
-      transform: translateX(50px);
-    }
-    to {
-      opacity: 1;
-      transform: translateX(0);
-    }
+  .geo-section-gradient-down {
+    background: linear-gradient(180deg, #F6F1E8 0%, #FFFFFF 100%);
   }
 
-  .bounce-subtle {
-    animation: bounceSubtle 2s infinite;
-  }
-
-  @keyframes bounceSubtle {
-    0%, 100% {
-      transform: translateY(0);
-    }
-    50% {
-      transform: translateY(-10px);
-    }
-  }
-
-  .pulse-subtle {
-    animation: pulseSubtle 2s infinite;
-  }
-
-  @keyframes pulseSubtle {
-    0%, 100% {
-      opacity: 1;
-    }
-    50% {
-      opacity: 0.7;
-    }
-  }
-
-  .shimmer {
-    animation: shimmer 2s infinite;
-    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
-    background-size: 200% 100%;
-  }
-
-  @keyframes shimmer {
-    0% {
-      background-position: 200% 0;
-    }
-    100% {
-      background-position: -200% 0;
-    }
+  .geo-section-gradient-up {
+    background: linear-gradient(180deg, #FFFFFF 0%, #F6F1E8 100%);
   }
 
   .glass {
-    background: rgba(255, 255, 255, 0.97);
+    background: rgba(246, 241, 232, 0.97);
+    border-bottom: 1px solid rgba(184, 147, 91, 0.12);
   }
 
-  @supports (backdrop-filter: blur(12px)) {
-    @media (hover: hover) {
-      .glass {
-        backdrop-filter: blur(12px) saturate(180%);
-        -webkit-backdrop-filter: blur(12px) saturate(180%);
-        background: rgba(255, 255, 255, 0.85);
-      }
-    }
+  .glass-dark {
+    background: rgba(11, 10, 8, 0.92);
   }
 
-  .text-gradient {
-    background: linear-gradient(135deg, var(--color-geo-red), #FF4D6A);
+  .text-gradient-gold {
+    background: linear-gradient(135deg, #B8935B 0%, #E8CFA3 50%, #B8935B 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+  }
+
+  .text-gradient-onyx {
+    background: linear-gradient(135deg, #0B0A08 0%, #3A342C 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-overlay {
+    background:
+      linear-gradient(180deg, rgba(11, 10, 8, 0.5) 0%, rgba(11, 10, 8, 0.7) 55%, rgba(11, 10, 8, 0.92) 100%);
+  }
+
+  .hero-vignette {
+    background: radial-gradient(ellipse at center, transparent 35%, rgba(11, 10, 8, 0.45) 100%);
+  }
+
+  @keyframes kenBurns {
+    0% {
+      transform: scale(1) translate(0, 0);
+    }
+    100% {
+      transform: scale(1.08) translate(-1%, -1%);
+    }
+  }
+
+  .ken-burns {
+    animation: kenBurns 22s ease-out forwards;
+  }
+
+  @keyframes shimmerGold {
+    0%, 100% {
+      opacity: 0.5;
+    }
+    50% {
+      opacity: 1;
+    }
+  }
+
+  .shimmer-gold {
+    animation: shimmerGold 3s ease-in-out infinite;
+  }
+
+  @keyframes bounceSlow {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(6px);
+    }
+  }
+
+  .animate-bounce-slow {
+    animation: bounceSlow 2s ease-in-out infinite;
+  }
+
+  @keyframes marquee {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  .animate-marquee {
+    animation: marquee 40s linear infinite;
+  }
+
+  .accent-underline {
+    position: relative;
+    display: inline-block;
+  }
+
+  .accent-underline::after {
+    content: '';
+    position: absolute;
+    bottom: -6px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--color-geo-gold), transparent);
   }
 }
 
@@ -220,6 +229,7 @@
 
 html {
   -webkit-text-size-adjust: 100%;
+  height: 100%;
 }
 
 body {
@@ -227,26 +237,31 @@ body {
   padding: 0;
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
   background-color: #ffffff;
-  color: #0A0A0A;
+  color: #0B0A08;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-feature-settings: 'cv11', 'ss01';
   text-rendering: optimizeLegibility;
-  overflow-x: hidden;
   -webkit-overflow-scrolling: touch;
+  min-height: 100%;
+  position: relative;
 }
 
 #root {
   width: 100%;
   min-height: 100vh;
+  overflow-x: hidden;
 }
 
 ::selection {
-  background: var(--color-geo-red);
-  color: white;
+  background: var(--color-geo-gold);
+  color: var(--color-geo-onyx);
 }
 
 @supports (-webkit-touch-callout: none) {
+  html, body {
+    height: -webkit-fill-available;
+  }
   body {
     min-height: -webkit-fill-available;
   }

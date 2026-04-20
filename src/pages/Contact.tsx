@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { motion } from 'framer-motion';
 import { MapPin, Phone, Mail, MessageCircle } from 'lucide-react';
 
 export default function Contact() {
@@ -57,16 +56,18 @@ export default function Contact() {
 
   return (
     <div className="min-h-screen bg-white pt-20">
-      <section className="py-24 md:py-36 bg-[#0A0A0A] text-white relative overflow-hidden">
+      <section className="py-24 md:py-36 text-white relative overflow-hidden" style={{ background: 'linear-gradient(180deg, #0B0A08 0%, #1A1815 60%, #0B0A08 100%)' }}>
         <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-[-20%] right-[-10%] w-[500px] h-[500px] bg-[#C8102E] rounded-full blur-[200px] opacity-[0.06]" />
+          <div className="absolute top-[-20%] right-[-10%] w-[500px] h-[500px] bg-[#B8935B] rounded-full blur-[200px] opacity-[0.12]" />
+          <div className="absolute bottom-[-15%] left-[-10%] w-[400px] h-[400px] bg-[#B8935B] rounded-full blur-[180px] opacity-[0.08]" />
         </div>
+        <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#B8935B]/40 to-transparent z-20" />
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#C8102E] mb-6">
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#B8935B] mb-6">
             Get in Touch
           </p>
           <h1 className="font-display text-5xl md:text-7xl font-bold mb-6">
-            We Would Love to <span className="text-[#C8102E]">Hear from You</span>
+            We Would Love to <span className="text-[#B8935B]">Hear from You</span>
           </h1>
           <p className="text-lg md:text-xl text-gray-400 font-light max-w-2xl mx-auto">
             Whether you have a question about our products, need a custom quote, or simply want
@@ -81,7 +82,7 @@ export default function Contact() {
             <div>
               <p className="geo-label mb-3">Reach Out</p>
               <h2 className="geo-heading text-4xl md:text-5xl mb-4">
-                Contact <span className="text-[#C8102E]">Information</span>
+                Contact <span className="text-[#B8935B]">Information</span>
               </h2>
               <p className="text-gray-500 text-base font-light leading-relaxed">
                 We are here to help with orders, enquiries, custom requirements, or any questions
@@ -101,14 +102,14 @@ export default function Contact() {
                       target: contact.href.includes('http') ? '_blank' : undefined,
                       rel: contact.href.includes('http') ? 'noopener noreferrer' : undefined,
                     } : {})}
-                    className="flex items-start gap-5 p-6 bg-[#FAF8F5] rounded-sm border border-gray-100 hover:border-[#C8102E]/30 hover:shadow-md transition-all duration-300 cursor-pointer block"
+                    className="flex items-start gap-5 p-6 bg-[#F6F1E8] rounded-sm border border-gray-100 hover:border-[#B8935B]/40 hover:shadow-md transition-all duration-300 cursor-pointer block"
                   >
-                    <div className="w-10 h-10 bg-[#C8102E]/10 rounded-sm flex items-center justify-center shrink-0">
-                      <Icon className="w-5 h-5 text-[#C8102E]" />
+                    <div className="w-10 h-10 bg-[#B8935B]/15 rounded-sm flex items-center justify-center shrink-0">
+                      <Icon className="w-5 h-5 text-[#B8935B]" />
                     </div>
                     <div>
-                      <h3 className="font-semibold text-[#0A0A0A] text-sm mb-1">{contact.title}</h3>
-                      <p className="font-medium text-[#C8102E] text-sm mb-0.5">{contact.value}</p>
+                      <h3 className="font-semibold text-[#0B0A08] text-sm mb-1">{contact.title}</h3>
+                      <p className="font-medium text-[#B8935B] text-sm mb-0.5">{contact.value}</p>
                       <p className="text-xs text-gray-400 font-light">{contact.desc}</p>
                     </div>
                   </Tag>
@@ -117,32 +118,30 @@ export default function Contact() {
             </div>
 
             <div>
-              <h3 className="font-semibold text-[#0A0A0A] text-sm mb-4 uppercase tracking-[0.1em]">Follow Us</h3>
+              <h3 className="font-semibold text-[#0B0A08] text-sm mb-4 uppercase tracking-[0.1em]">Follow Us</h3>
               <div className="flex gap-3">
                 {[
                   { label: 'IG', title: 'Instagram', href: 'https://instagram.com' },
                   { label: 'WA', title: 'WhatsApp', href: 'https://wa.me/917XXXXXXXXXXXX' },
                   { label: 'FB', title: 'Facebook', href: 'https://facebook.com' },
                 ].map((social, idx) => (
-                  <motion.a
+                  <a
                     key={idx}
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.97 }}
                     href={social.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-11 h-11 border border-gray-200 text-gray-500 rounded-sm flex items-center justify-center text-xs font-semibold hover:border-[#C8102E] hover:text-[#C8102E] transition-all duration-300"
+                    className="w-11 h-11 border border-gray-200 text-gray-500 rounded-sm flex items-center justify-center text-xs font-semibold hover:border-[#B8935B] hover:text-[#B8935B] transition-all duration-300 active:scale-[0.95]"
                     title={social.title}
                   >
                     {social.label}
-                  </motion.a>
+                  </a>
                 ))}
               </div>
             </div>
           </div>
 
-          <div className="bg-[#FAF8F5] border border-gray-100 p-8 md:p-12 rounded-sm">
-            <h3 className="text-xl font-semibold text-[#0A0A0A] mb-2">
+          <div className="bg-[#F6F1E8] border border-gray-100 p-8 md:p-12 rounded-sm">
+            <h3 className="text-xl font-semibold text-[#0B0A08] mb-2">
               Send Us a Message
             </h3>
             <p className="text-gray-400 text-sm mb-8 font-light">
@@ -157,7 +156,7 @@ export default function Contact() {
                   value={formData.name}
                   onChange={handleChange}
                   required
-                  className="px-5 py-3.5 border border-gray-200 bg-white focus:border-[#C8102E] outline-none transition-colors text-sm rounded-sm"
+                  className="px-5 py-3.5 border border-gray-200 bg-white focus:border-[#B8935B] outline-none transition-colors text-sm rounded-sm"
                 />
                 <input
                   type="email"
@@ -166,7 +165,7 @@ export default function Contact() {
                   value={formData.email}
                   onChange={handleChange}
                   required
-                  className="px-5 py-3.5 border border-gray-200 bg-white focus:border-[#C8102E] outline-none transition-colors text-sm rounded-sm"
+                  className="px-5 py-3.5 border border-gray-200 bg-white focus:border-[#B8935B] outline-none transition-colors text-sm rounded-sm"
                 />
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
@@ -176,7 +175,7 @@ export default function Contact() {
                   placeholder="Phone Number"
                   value={formData.phone}
                   onChange={handleChange}
-                  className="px-5 py-3.5 border border-gray-200 bg-white focus:border-[#C8102E] outline-none transition-colors text-sm rounded-sm"
+                  className="px-5 py-3.5 border border-gray-200 bg-white focus:border-[#B8935B] outline-none transition-colors text-sm rounded-sm"
                 />
                 <input
                   type="text"
@@ -185,7 +184,7 @@ export default function Contact() {
                   value={formData.subject}
                   onChange={handleChange}
                   required
-                  className="px-5 py-3.5 border border-gray-200 bg-white focus:border-[#C8102E] outline-none transition-colors text-sm rounded-sm"
+                  className="px-5 py-3.5 border border-gray-200 bg-white focus:border-[#B8935B] outline-none transition-colors text-sm rounded-sm"
                 />
               </div>
               <textarea
@@ -195,16 +194,14 @@ export default function Contact() {
                 onChange={handleChange}
                 required
                 rows={6}
-                className="w-full px-5 py-3.5 border border-gray-200 bg-white focus:border-[#C8102E] outline-none transition-colors text-sm resize-none rounded-sm"
+                className="w-full px-5 py-3.5 border border-gray-200 bg-white focus:border-[#B8935B] outline-none transition-colors text-sm resize-none rounded-sm"
               />
-              <motion.button
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.97 }}
+              <button
                 type="submit"
-                className="w-full geo-btn-primary text-sm uppercase tracking-[0.1em]"
+                className="w-full geo-btn-primary text-sm uppercase tracking-[0.1em] active:scale-[0.97]"
               >
                 Send Message
-              </motion.button>
+              </button>
               <p className="text-[11px] text-gray-400 text-center font-light">
                 Your information is safe with us. We never share your data.
               </p>
@@ -216,7 +213,7 @@ export default function Contact() {
           <div className="text-center mb-10">
             <p className="geo-label mb-3">Find Us</p>
             <h2 className="geo-heading text-3xl md:text-4xl">
-              Visit Our <span className="text-[#C8102E]">Location</span>
+              Visit Our <span className="text-[#B8935B]">Location</span>
             </h2>
           </div>
           <div className="w-full h-96 bg-gray-100 rounded-sm overflow-hidden border border-gray-100">
@@ -233,8 +230,8 @@ export default function Contact() {
           </div>
         </section>
 
-        <section className="mt-20 bg-[#0A0A0A] text-white p-10 md:p-14 rounded-sm text-center">
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#C8102E] mb-4">
+        <section className="mt-20 bg-[#0B0A08] text-white p-10 md:p-14 rounded-sm text-center">
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#B8935B] mb-4">
             Instant Support
           </p>
           <h3 className="font-display text-2xl md:text-3xl font-bold mb-3">
@@ -243,16 +240,14 @@ export default function Contact() {
           <p className="text-gray-400 font-light mb-8">
             Our team is available on WhatsApp for quick responses during business hours.
           </p>
-          <motion.a
-            whileHover={{ scale: 1.03 }}
-            whileTap={{ scale: 0.97 }}
+          <a
             href="https://wa.me/917XXXXXXXXXXXX"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-block px-8 py-3.5 bg-[#C8102E] text-white text-sm font-semibold uppercase tracking-[0.1em] hover:bg-red-800 transition-colors duration-300"
+            className="inline-block px-8 py-3.5 bg-[#B8935B] text-[#0B0A08] text-sm font-semibold uppercase tracking-[0.15em] hover:bg-[#D4B88A] transition-colors duration-300 active:scale-[0.97]"
           >
             Chat on WhatsApp
-          </motion.a>
+          </a>
         </section>
       </div>
     </div>

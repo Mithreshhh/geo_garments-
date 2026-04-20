@@ -1,4 +1,3 @@
-import { motion } from 'framer-motion';
 import { Star } from 'lucide-react';
 
 interface Testimonial {
@@ -46,14 +45,14 @@ export default function Testimonials() {
   ];
 
   return (
-    <section className="py-24 md:py-36 bg-white">
+    <section className="py-20 md:py-28 bg-gradient-to-b from-[#F6F1E8] via-white to-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-20">
+        <div className="text-center mb-16">
           <p className="geo-label mb-4">Testimonials</p>
           <h2 className="geo-heading text-4xl md:text-5xl mb-5">
             Trusted by Thousands
             <br />
-            <span className="text-[#C8102E]">Across India</span>
+            <span className="text-[#B8935B]">Across India</span>
           </h2>
           <p className="text-gray-500 text-lg font-light max-w-xl mx-auto">
             Hear from retailers, institutions, and individual customers who have made Geo Garments their preferred choice.
@@ -62,14 +61,13 @@ export default function Testimonials() {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {testimonials.map((testimonial) => (
-            <motion.div
+            <div
               key={testimonial.id}
-              whileHover={{ y: -8 }}
-              className="p-8 bg-[#FAF8F5] border border-gray-100 rounded-sm hover:shadow-[0_20px_50px_rgba(0,0,0,0.06)] transition-all duration-300"
+              className="p-8 bg-[#F6F1E8] border border-[#EDE6D8] rounded-sm hover:border-[#B8935B]/40 hover:shadow-[0_20px_50px_rgba(11,10,8,0.08)] transition-all duration-300 hover:-translate-y-2"
             >
               <div className="flex gap-1 mb-6">
                 {[...Array(testimonial.rating)].map((_, i) => (
-                  <Star key={i} className="w-4 h-4 fill-[#C8102E] text-[#C8102E]" />
+                  <Star key={i} className="w-4 h-4 fill-[#B8935B] text-[#B8935B]" />
                 ))}
               </div>
 
@@ -78,11 +76,11 @@ export default function Testimonials() {
               </p>
 
               <div className="flex items-center gap-4 pt-6 border-t border-gray-200">
-                <div className="w-11 h-11 rounded-full bg-[#C8102E] text-white flex items-center justify-center text-sm font-bold">
+                <div className="w-11 h-11 rounded-full bg-[#0B0A08] text-[#B8935B] flex items-center justify-center text-sm font-bold tracking-wide ring-1 ring-[#B8935B]/30">
                   {testimonial.initials}
                 </div>
                 <div>
-                  <h4 className="font-semibold text-[#0A0A0A] text-sm">
+                  <h4 className="font-semibold text-[#0B0A08] text-sm">
                     {testimonial.name}
                   </h4>
                   <p className="text-xs text-gray-400">
@@ -90,7 +88,7 @@ export default function Testimonials() {
                   </p>
                 </div>
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
 
@@ -101,7 +99,7 @@ export default function Testimonials() {
             { number: '99%', label: 'Would Recommend' },
           ].map((stat, index) => (
             <div key={index} className="text-center">
-              <p className="text-3xl md:text-4xl font-display font-bold text-[#C8102E] mb-1">
+              <p className="text-3xl md:text-4xl font-display font-bold text-[#B8935B] mb-1">
                 {stat.number}
               </p>
               <p className="text-gray-400 text-xs uppercase tracking-[0.1em]">{stat.label}</p>

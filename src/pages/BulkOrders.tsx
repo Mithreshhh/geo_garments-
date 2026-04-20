@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { motion } from 'framer-motion';
 import { Check, Building2, GraduationCap, Store } from 'lucide-react';
 
 export default function BulkOrders() {
@@ -26,16 +25,18 @@ export default function BulkOrders() {
 
   return (
     <div className="min-h-screen bg-white pt-20">
-      <section className="py-24 md:py-36 bg-[#0A0A0A] text-white relative overflow-hidden">
+      <section className="py-24 md:py-36 text-white relative overflow-hidden" style={{ background: 'linear-gradient(180deg, #0B0A08 0%, #1A1815 60%, #0B0A08 100%)' }}>
         <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-[-20%] right-[-10%] w-[500px] h-[500px] bg-[#C8102E] rounded-full blur-[200px] opacity-[0.06]" />
+          <div className="absolute top-[-20%] right-[-10%] w-[500px] h-[500px] bg-[#B8935B] rounded-full blur-[200px] opacity-[0.12]" />
+          <div className="absolute bottom-[-15%] left-[-10%] w-[400px] h-[400px] bg-[#B8935B] rounded-full blur-[180px] opacity-[0.08]" />
         </div>
+        <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#B8935B]/40 to-transparent z-20" />
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#C8102E] mb-6">
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#B8935B] mb-6">
             Wholesale & Institutional
           </p>
           <h1 className="font-display text-5xl md:text-7xl font-bold mb-6">
-            Bulk Orders, <span className="text-[#C8102E]">Simplified</span>
+            Bulk Orders, <span className="text-[#B8935B]">Simplified</span>
           </h1>
           <p className="text-lg md:text-xl text-gray-400 font-light max-w-2xl mx-auto">
             Volume pricing that rewards your business. Full customization, dedicated support,
@@ -49,7 +50,7 @@ export default function BulkOrders() {
           <div className="text-center mb-16">
             <p className="geo-label mb-4">Who We Serve</p>
             <h2 className="geo-heading text-4xl md:text-5xl">
-              Built for <span className="text-[#C8102E]">Your Business</span>
+              Built for <span className="text-[#B8935B]">Your Business</span>
             </h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -62,12 +63,12 @@ export default function BulkOrders() {
               return (
                 <div
                   key={idx}
-                  className="p-10 bg-[#FAF8F5] rounded-sm border border-gray-100 text-center hover:shadow-[0_20px_50px_rgba(0,0,0,0.06)] transition-all duration-300"
+                  className="p-10 bg-[#F6F1E8] rounded-sm border border-gray-100 text-center hover:shadow-[0_20px_50px_rgba(0,0,0,0.06)] transition-all duration-300"
                 >
-                  <div className="w-14 h-14 bg-[#C8102E]/10 rounded-sm flex items-center justify-center mx-auto mb-6">
-                    <Icon className="w-7 h-7 text-[#C8102E]" />
+                  <div className="w-14 h-14 bg-[#B8935B]/15 rounded-sm flex items-center justify-center mx-auto mb-6">
+                    <Icon className="w-7 h-7 text-[#B8935B]" />
                   </div>
-                  <h3 className="text-xl font-semibold text-[#0A0A0A] mb-3">{item.title}</h3>
+                  <h3 className="text-xl font-semibold text-[#0B0A08] mb-3">{item.title}</h3>
                   <p className="text-gray-500 text-sm leading-relaxed font-light">{item.desc}</p>
                 </div>
               );
@@ -79,7 +80,7 @@ export default function BulkOrders() {
           <div className="text-center mb-16">
             <p className="geo-label mb-4">Why Order in Bulk</p>
             <h2 className="geo-heading text-4xl md:text-5xl">
-              Advantages of <span className="text-[#C8102E]">Partnering with Us</span>
+              Advantages of <span className="text-[#B8935B]">Partnering with Us</span>
             </h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -95,11 +96,11 @@ export default function BulkOrders() {
                 key={idx}
                 className="flex gap-5 p-6 bg-white rounded-sm border border-gray-100 hover:shadow-md transition-all duration-300"
               >
-                <div className="w-10 h-10 rounded-full bg-[#C8102E] text-white flex items-center justify-center shrink-0">
+                <div className="w-10 h-10 rounded-full bg-[#0B0A08] text-[#B8935B] flex items-center justify-center shrink-0 ring-1 ring-[#B8935B]/30">
                   <Check className="w-5 h-5" />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-[#0A0A0A] mb-1">{item.title}</h3>
+                  <h3 className="font-semibold text-[#0B0A08] mb-1">{item.title}</h3>
                   <p className="text-gray-500 text-sm leading-relaxed font-light">{item.desc}</p>
                 </div>
               </div>
@@ -111,7 +112,7 @@ export default function BulkOrders() {
           <div className="text-center mb-16">
             <p className="geo-label mb-4">How It Works</p>
             <h2 className="geo-heading text-4xl md:text-5xl">
-              A Simple, <span className="text-[#C8102E]">Streamlined Process</span>
+              A Simple, <span className="text-[#B8935B]">Streamlined Process</span>
             </h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
@@ -122,10 +123,10 @@ export default function BulkOrders() {
               { step: 4, title: 'Reliable Delivery', desc: 'Safe, insured delivery to your doorstep on the agreed date.' },
             ].map((item, idx) => (
               <div key={item.step} className="text-center relative">
-                <div className="w-14 h-14 bg-[#C8102E] text-white rounded-full flex items-center justify-center font-display font-bold text-xl mx-auto mb-5">
+                <div className="w-14 h-14 bg-[#0B0A08] text-[#B8935B] rounded-full flex items-center justify-center font-display font-bold text-xl mx-auto mb-5 ring-1 ring-[#B8935B]/30">
                   {item.step}
                 </div>
-                <h3 className="font-semibold text-[#0A0A0A] text-lg mb-2">{item.title}</h3>
+                <h3 className="font-semibold text-[#0B0A08] text-lg mb-2">{item.title}</h3>
                 <p className="text-gray-500 text-sm leading-relaxed font-light">{item.desc}</p>
                 {idx < 3 && (
                   <div className="hidden md:block absolute top-7 left-[60%] w-[80%] h-[1px] bg-gray-200" />
@@ -136,11 +137,11 @@ export default function BulkOrders() {
         </section>
 
         <section className="max-w-2xl mx-auto">
-          <div className="bg-[#FAF8F5] border border-gray-100 p-10 md:p-14 rounded-sm">
+          <div className="bg-[#F6F1E8] border border-gray-100 p-10 md:p-14 rounded-sm">
             <div className="text-center mb-10">
               <p className="geo-label mb-3">Get Started</p>
               <h2 className="geo-heading text-3xl md:text-4xl mb-3">
-                Request Your <span className="text-[#C8102E]">Quote</span>
+                Request Your <span className="text-[#B8935B]">Quote</span>
               </h2>
               <p className="text-gray-500 text-sm font-light">
                 Fill in the details below and our team will respond within 24 hours.
@@ -155,7 +156,7 @@ export default function BulkOrders() {
                   value={formData.name}
                   onChange={handleChange}
                   required
-                  className="px-5 py-3.5 border border-gray-200 bg-white focus:border-[#C8102E] outline-none transition-colors text-sm rounded-sm"
+                  className="px-5 py-3.5 border border-gray-200 bg-white focus:border-[#B8935B] outline-none transition-colors text-sm rounded-sm"
                 />
                 <input
                   type="text"
@@ -164,7 +165,7 @@ export default function BulkOrders() {
                   value={formData.businessName}
                   onChange={handleChange}
                   required
-                  className="px-5 py-3.5 border border-gray-200 bg-white focus:border-[#C8102E] outline-none transition-colors text-sm rounded-sm"
+                  className="px-5 py-3.5 border border-gray-200 bg-white focus:border-[#B8935B] outline-none transition-colors text-sm rounded-sm"
                 />
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
@@ -175,7 +176,7 @@ export default function BulkOrders() {
                   value={formData.quantity}
                   onChange={handleChange}
                   required
-                  className="px-5 py-3.5 border border-gray-200 bg-white focus:border-[#C8102E] outline-none transition-colors text-sm rounded-sm"
+                  className="px-5 py-3.5 border border-gray-200 bg-white focus:border-[#B8935B] outline-none transition-colors text-sm rounded-sm"
                 />
                 <input
                   type="tel"
@@ -184,7 +185,7 @@ export default function BulkOrders() {
                   value={formData.phone}
                   onChange={handleChange}
                   required
-                  className="px-5 py-3.5 border border-gray-200 bg-white focus:border-[#C8102E] outline-none transition-colors text-sm rounded-sm"
+                  className="px-5 py-3.5 border border-gray-200 bg-white focus:border-[#B8935B] outline-none transition-colors text-sm rounded-sm"
                 />
               </div>
               <textarea
@@ -193,16 +194,14 @@ export default function BulkOrders() {
                 value={formData.message}
                 onChange={handleChange}
                 rows={5}
-                className="w-full px-5 py-3.5 border border-gray-200 bg-white focus:border-[#C8102E] outline-none transition-colors text-sm resize-none rounded-sm"
+                className="w-full px-5 py-3.5 border border-gray-200 bg-white focus:border-[#B8935B] outline-none transition-colors text-sm resize-none rounded-sm"
               />
-              <motion.button
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.97 }}
+              <button
                 type="submit"
-                className="w-full geo-btn-primary text-sm uppercase tracking-[0.1em]"
+                className="w-full geo-btn-primary text-sm uppercase tracking-[0.1em] active:scale-[0.97]"
               >
                 Submit Enquiry
-              </motion.button>
+              </button>
               <p className="text-[11px] text-gray-400 text-center font-light">
                 No obligation. We will respond with a detailed quote within 24 hours.
               </p>
@@ -212,16 +211,14 @@ export default function BulkOrders() {
 
         <section className="mt-20 text-center">
           <p className="text-gray-500 text-base mb-6 font-light">Prefer a direct conversation?</p>
-          <motion.a
-            whileHover={{ scale: 1.03 }}
-            whileTap={{ scale: 0.97 }}
+          <a
             href="https://wa.me/917XXXXXXXXXXXX"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-block geo-btn-primary text-sm uppercase tracking-[0.1em]"
+            className="inline-block geo-btn-primary text-sm uppercase tracking-[0.1em] active:scale-[0.97]"
           >
             Chat on WhatsApp
-          </motion.a>
+          </a>
         </section>
       </div>
     </div>
