@@ -24,26 +24,6 @@ export default function Contact() {
     setFormData({ name: '', email: '', phone: '', subject: '', message: '' });
   };
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.2,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.6 },
-    },
-  };
-
   const contactInfo = [
     {
       icon: MapPin,
@@ -82,43 +62,22 @@ export default function Contact() {
           <div className="absolute top-[-20%] right-[-10%] w-[500px] h-[500px] bg-[#C8102E] rounded-full blur-[200px] opacity-[0.06]" />
         </div>
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-xs font-semibold uppercase tracking-[0.2em] text-[#C8102E] mb-6"
-          >
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#C8102E] mb-6">
             Get in Touch
-          </motion.p>
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="font-display text-5xl md:text-7xl font-bold mb-6"
-          >
+          </p>
+          <h1 className="font-display text-5xl md:text-7xl font-bold mb-6">
             We Would Love to <span className="text-[#C8102E]">Hear from You</span>
-          </motion.h1>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-lg md:text-xl text-gray-400 font-light max-w-2xl mx-auto"
-          >
+          </h1>
+          <p className="text-lg md:text-xl text-gray-400 font-light max-w-2xl mx-auto">
             Whether you have a question about our products, need a custom quote, or simply want
             to say hello — our team is ready to assist.
-          </motion.p>
+          </p>
         </div>
       </section>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-36">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
-          <motion.div
-            initial={{ opacity: 0, x: -40 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.7 }}
-            viewport={{ once: true }}
-            className="space-y-10"
-          >
+          <div className="space-y-10">
             <div>
               <p className="geo-label mb-3">Reach Out</p>
               <h2 className="geo-heading text-4xl md:text-5xl mb-4">
@@ -130,46 +89,34 @@ export default function Contact() {
               </p>
             </div>
 
-            <motion.div
-              variants={containerVariants}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              className="space-y-4"
-            >
+            <div className="space-y-4">
               {contactInfo.map((contact, idx) => {
                 const Icon = contact.icon;
                 const Tag = contact.href ? 'a' : 'div';
                 return (
-                  <motion.div key={idx} variants={itemVariants}>
-                    <Tag
-                      {...(contact.href ? {
-                        href: contact.href,
-                        target: contact.href.includes('http') ? '_blank' : undefined,
-                        rel: contact.href.includes('http') ? 'noopener noreferrer' : undefined,
-                      } : {})}
-                      className="flex items-start gap-5 p-6 bg-[#FAF8F5] rounded-sm border border-gray-100 hover:border-[#C8102E]/30 hover:shadow-md transition-all duration-300 cursor-pointer block"
-                    >
-                      <div className="w-10 h-10 bg-[#C8102E]/10 rounded-sm flex items-center justify-center shrink-0">
-                        <Icon className="w-5 h-5 text-[#C8102E]" />
-                      </div>
-                      <div>
-                        <h3 className="font-semibold text-[#0A0A0A] text-sm mb-1">{contact.title}</h3>
-                        <p className="font-medium text-[#C8102E] text-sm mb-0.5">{contact.value}</p>
-                        <p className="text-xs text-gray-400 font-light">{contact.desc}</p>
-                      </div>
-                    </Tag>
-                  </motion.div>
+                  <Tag
+                    key={idx}
+                    {...(contact.href ? {
+                      href: contact.href,
+                      target: contact.href.includes('http') ? '_blank' : undefined,
+                      rel: contact.href.includes('http') ? 'noopener noreferrer' : undefined,
+                    } : {})}
+                    className="flex items-start gap-5 p-6 bg-[#FAF8F5] rounded-sm border border-gray-100 hover:border-[#C8102E]/30 hover:shadow-md transition-all duration-300 cursor-pointer block"
+                  >
+                    <div className="w-10 h-10 bg-[#C8102E]/10 rounded-sm flex items-center justify-center shrink-0">
+                      <Icon className="w-5 h-5 text-[#C8102E]" />
+                    </div>
+                    <div>
+                      <h3 className="font-semibold text-[#0A0A0A] text-sm mb-1">{contact.title}</h3>
+                      <p className="font-medium text-[#C8102E] text-sm mb-0.5">{contact.value}</p>
+                      <p className="text-xs text-gray-400 font-light">{contact.desc}</p>
+                    </div>
+                  </Tag>
                 );
               })}
-            </motion.div>
+            </div>
 
-            <motion.div
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              viewport={{ once: true }}
-            >
+            <div>
               <h3 className="font-semibold text-[#0A0A0A] text-sm mb-4 uppercase tracking-[0.1em]">Follow Us</h3>
               <div className="flex gap-3">
                 {[
@@ -191,16 +138,10 @@ export default function Contact() {
                   </motion.a>
                 ))}
               </div>
-            </motion.div>
-          </motion.div>
+            </div>
+          </div>
 
-          <motion.div
-            initial={{ opacity: 0, x: 40 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.7 }}
-            viewport={{ once: true }}
-            className="bg-[#FAF8F5] border border-gray-100 p-8 md:p-12 rounded-sm"
-          >
+          <div className="bg-[#FAF8F5] border border-gray-100 p-8 md:p-12 rounded-sm">
             <h3 className="text-xl font-semibold text-[#0A0A0A] mb-2">
               Send Us a Message
             </h3>
@@ -268,16 +209,10 @@ export default function Contact() {
                 Your information is safe with us. We never share your data.
               </p>
             </form>
-          </motion.div>
+          </div>
         </div>
 
-        <motion.section
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-          className="mt-24"
-        >
+        <section className="mt-24">
           <div className="text-center mb-10">
             <p className="geo-label mb-3">Find Us</p>
             <h2 className="geo-heading text-3xl md:text-4xl">
@@ -296,15 +231,9 @@ export default function Contact() {
               title="Geo Garments Location"
             />
           </div>
-        </motion.section>
+        </section>
 
-        <motion.section
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          viewport={{ once: true }}
-          className="mt-20 bg-[#0A0A0A] text-white p-10 md:p-14 rounded-sm text-center"
-        >
+        <section className="mt-20 bg-[#0A0A0A] text-white p-10 md:p-14 rounded-sm text-center">
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#C8102E] mb-4">
             Instant Support
           </p>
@@ -324,7 +253,7 @@ export default function Contact() {
           >
             Chat on WhatsApp
           </motion.a>
-        </motion.section>
+        </section>
       </div>
     </div>
   );

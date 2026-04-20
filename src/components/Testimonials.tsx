@@ -45,36 +45,10 @@ export default function Testimonials() {
     },
   ];
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.15,
-        delayChildren: 0.2,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.6 },
-    },
-  };
-
   return (
     <section className="py-24 md:py-36 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-          className="text-center mb-20"
-        >
+        <div className="text-center mb-20">
           <p className="geo-label mb-4">Testimonials</p>
           <h2 className="geo-heading text-4xl md:text-5xl mb-5">
             Trusted by Thousands
@@ -84,21 +58,14 @@ export default function Testimonials() {
           <p className="text-gray-500 text-lg font-light max-w-xl mx-auto">
             Hear from retailers, institutions, and individual customers who have made Geo Garments their preferred choice.
           </p>
-        </motion.div>
+        </div>
 
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.1 }}
-          className="grid grid-cols-1 md:grid-cols-3 gap-8"
-        >
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {testimonials.map((testimonial) => (
             <motion.div
               key={testimonial.id}
-              variants={itemVariants}
               whileHover={{ y: -8 }}
-              className="p-8 bg-[#FAF8F5] border border-gray-100 rounded-sm hover:shadow-[0_20px_50px_rgba(0,0,0,0.06)] transition-all duration-400"
+              className="p-8 bg-[#FAF8F5] border border-gray-100 rounded-sm hover:shadow-[0_20px_50px_rgba(0,0,0,0.06)] transition-all duration-300"
             >
               <div className="flex gap-1 mb-6">
                 {[...Array(testimonial.rating)].map((_, i) => (
@@ -125,35 +92,22 @@ export default function Testimonials() {
               </div>
             </motion.div>
           ))}
-        </motion.div>
+        </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          viewport={{ once: true }}
-          className="grid grid-cols-3 gap-8 mt-20 max-w-2xl mx-auto"
-        >
+        <div className="grid grid-cols-3 gap-8 mt-20 max-w-2xl mx-auto">
           {[
             { number: '10,000+', label: 'Happy Customers' },
             { number: '4.9/5', label: 'Average Rating' },
             { number: '99%', label: 'Would Recommend' },
           ].map((stat, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              viewport={{ once: true }}
-              className="text-center"
-            >
+            <div key={index} className="text-center">
               <p className="text-3xl md:text-4xl font-display font-bold text-[#C8102E] mb-1">
                 {stat.number}
               </p>
               <p className="text-gray-400 text-xs uppercase tracking-[0.1em]">{stat.label}</p>
-            </motion.div>
+            </div>
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   );

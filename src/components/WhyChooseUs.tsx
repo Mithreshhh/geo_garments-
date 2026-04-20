@@ -28,42 +28,25 @@ export default function WhyChooseUs() {
     <section className="py-24 md:py-36 bg-[#FAF8F5] overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-          <motion.div
-            initial={{ opacity: 0, x: -40 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.7, ease: 'easeOut' }}
-            viewport={{ once: true }}
-            className="relative"
-          >
+          <div className="relative">
             <div className="relative overflow-hidden rounded-sm shadow-2xl aspect-[4/5]">
               <img
                 src="https://images.unsplash.com/photo-1558171813-4c088753af8f?w=800&q=80"
                 alt="Premium Tailoring Process"
                 className="w-full h-full object-cover"
+                loading="lazy"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent" />
             </div>
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              viewport={{ once: true }}
-              className="absolute -bottom-6 -right-6 lg:-right-8 bg-[#C8102E] text-white p-6 rounded-sm shadow-xl max-w-[220px]"
-            >
+            <div className="absolute -bottom-6 -right-6 lg:-right-8 bg-[#C8102E] text-white p-6 rounded-sm shadow-xl max-w-[220px]">
               <p className="font-display text-3xl font-bold leading-none">10,000+</p>
               <p className="text-sm mt-2 text-white/80 font-light">
                 Satisfied customers across India
               </p>
-            </motion.div>
-          </motion.div>
+            </div>
+          </div>
 
-          <motion.div
-            initial={{ opacity: 0, x: 40 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.7, ease: 'easeOut' }}
-            viewport={{ once: true }}
-            className="space-y-8"
-          >
+          <div className="space-y-8">
             <div>
               <p className="geo-label mb-3">Built on Trust</p>
               <h2 className="geo-heading text-4xl md:text-5xl mb-5">
@@ -81,10 +64,6 @@ export default function WhyChooseUs() {
               {reasons.map((item, index) => (
                 <motion.div
                   key={index}
-                  initial={{ opacity: 0, x: 20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.5, delay: 0.1 * index }}
-                  viewport={{ once: true }}
                   whileHover={{ x: 6 }}
                   className="flex gap-4 p-5 bg-white rounded-sm border border-gray-100 hover:shadow-md transition-all duration-300 cursor-pointer"
                 >
@@ -107,7 +86,7 @@ export default function WhyChooseUs() {
             >
               Discover Our Story
             </motion.button>
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>

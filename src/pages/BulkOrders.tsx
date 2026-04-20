@@ -24,26 +24,6 @@ export default function BulkOrders() {
     setFormData({ name: '', businessName: '', quantity: '', phone: '', message: '' });
   };
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.2,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.6 },
-    },
-  };
-
   return (
     <div className="min-h-screen bg-white pt-20">
       <section className="py-24 md:py-36 bg-[#0A0A0A] text-white relative overflow-hidden">
@@ -51,55 +31,28 @@ export default function BulkOrders() {
           <div className="absolute top-[-20%] right-[-10%] w-[500px] h-[500px] bg-[#C8102E] rounded-full blur-[200px] opacity-[0.06]" />
         </div>
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-xs font-semibold uppercase tracking-[0.2em] text-[#C8102E] mb-6"
-          >
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#C8102E] mb-6">
             Wholesale & Institutional
-          </motion.p>
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="font-display text-5xl md:text-7xl font-bold mb-6"
-          >
+          </p>
+          <h1 className="font-display text-5xl md:text-7xl font-bold mb-6">
             Bulk Orders, <span className="text-[#C8102E]">Simplified</span>
-          </motion.h1>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-lg md:text-xl text-gray-400 font-light max-w-2xl mx-auto"
-          >
+          </h1>
+          <p className="text-lg md:text-xl text-gray-400 font-light max-w-2xl mx-auto">
             Volume pricing that rewards your business. Full customization, dedicated support,
             and guaranteed delivery timelines.
-          </motion.p>
+          </p>
         </div>
       </section>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-36">
-        <motion.section
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-          className="mb-28"
-        >
+        <section className="mb-28">
           <div className="text-center mb-16">
             <p className="geo-label mb-4">Who We Serve</p>
             <h2 className="geo-heading text-4xl md:text-5xl">
               Built for <span className="text-[#C8102E]">Your Business</span>
             </h2>
           </div>
-          <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            className="grid grid-cols-1 md:grid-cols-3 gap-8"
-          >
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
               { icon: Store, title: 'Retailers & Boutiques', desc: 'Wholesale pricing that protects your margins while delivering premium quality your customers will love.' },
               { icon: GraduationCap, title: 'Schools & Institutions', desc: 'Durable, well-fitted uniforms manufactured to your specifications with consistent sizing.' },
@@ -107,42 +60,29 @@ export default function BulkOrders() {
             ].map((item, idx) => {
               const Icon = item.icon;
               return (
-                <motion.div
+                <div
                   key={idx}
-                  variants={itemVariants}
-                  className="p-10 bg-[#FAF8F5] rounded-sm border border-gray-100 text-center hover:shadow-[0_20px_50px_rgba(0,0,0,0.06)] transition-all duration-400"
+                  className="p-10 bg-[#FAF8F5] rounded-sm border border-gray-100 text-center hover:shadow-[0_20px_50px_rgba(0,0,0,0.06)] transition-all duration-300"
                 >
                   <div className="w-14 h-14 bg-[#C8102E]/10 rounded-sm flex items-center justify-center mx-auto mb-6">
                     <Icon className="w-7 h-7 text-[#C8102E]" />
                   </div>
                   <h3 className="text-xl font-semibold text-[#0A0A0A] mb-3">{item.title}</h3>
                   <p className="text-gray-500 text-sm leading-relaxed font-light">{item.desc}</p>
-                </motion.div>
+                </div>
               );
             })}
-          </motion.div>
-        </motion.section>
+          </div>
+        </section>
 
-        <motion.section
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-          className="mb-28"
-        >
+        <section className="mb-28">
           <div className="text-center mb-16">
             <p className="geo-label mb-4">Why Order in Bulk</p>
             <h2 className="geo-heading text-4xl md:text-5xl">
               Advantages of <span className="text-[#C8102E]">Partnering with Us</span>
             </h2>
           </div>
-          <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            className="grid grid-cols-1 md:grid-cols-2 gap-6"
-          >
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {[
               { title: 'Volume-Based Pricing', desc: 'Deeper discounts as your order size increases — maximise value at every scale.' },
               { title: 'Full Customization', desc: 'Custom designs, logo embroidery, label printing, and bespoke sizing available.' },
@@ -151,9 +91,8 @@ export default function BulkOrders() {
               { title: 'Flexible Payment Terms', desc: 'Instalment options and milestone-based payment plans for large orders.' },
               { title: 'Dedicated Account Manager', desc: 'A single point of contact who understands your needs and keeps your orders on track.' },
             ].map((item, idx) => (
-              <motion.div
+              <div
                 key={idx}
-                variants={itemVariants}
                 className="flex gap-5 p-6 bg-white rounded-sm border border-gray-100 hover:shadow-md transition-all duration-300"
               >
                 <div className="w-10 h-10 rounded-full bg-[#C8102E] text-white flex items-center justify-center shrink-0">
@@ -163,18 +102,12 @@ export default function BulkOrders() {
                   <h3 className="font-semibold text-[#0A0A0A] mb-1">{item.title}</h3>
                   <p className="text-gray-500 text-sm leading-relaxed font-light">{item.desc}</p>
                 </div>
-              </motion.div>
+              </div>
             ))}
-          </motion.div>
-        </motion.section>
+          </div>
+        </section>
 
-        <motion.section
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-          className="mb-28"
-        >
+        <section className="mb-28">
           <div className="text-center mb-16">
             <p className="geo-label mb-4">How It Works</p>
             <h2 className="geo-heading text-4xl md:text-5xl">
@@ -188,14 +121,7 @@ export default function BulkOrders() {
               { step: 3, title: 'Production Begins', desc: 'We manufacture your order with full quality oversight.' },
               { step: 4, title: 'Reliable Delivery', desc: 'Safe, insured delivery to your doorstep on the agreed date.' },
             ].map((item, idx) => (
-              <motion.div
-                key={idx}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: idx * 0.1 }}
-                viewport={{ once: true }}
-                className="text-center relative"
-              >
+              <div key={item.step} className="text-center relative">
                 <div className="w-14 h-14 bg-[#C8102E] text-white rounded-full flex items-center justify-center font-display font-bold text-xl mx-auto mb-5">
                   {item.step}
                 </div>
@@ -204,18 +130,12 @@ export default function BulkOrders() {
                 {idx < 3 && (
                   <div className="hidden md:block absolute top-7 left-[60%] w-[80%] h-[1px] bg-gray-200" />
                 )}
-              </motion.div>
+              </div>
             ))}
           </div>
-        </motion.section>
+        </section>
 
-        <motion.section
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-          className="max-w-2xl mx-auto"
-        >
+        <section className="max-w-2xl mx-auto">
           <div className="bg-[#FAF8F5] border border-gray-100 p-10 md:p-14 rounded-sm">
             <div className="text-center mb-10">
               <p className="geo-label mb-3">Get Started</p>
@@ -288,15 +208,9 @@ export default function BulkOrders() {
               </p>
             </form>
           </div>
-        </motion.section>
+        </section>
 
-        <motion.section
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          viewport={{ once: true }}
-          className="mt-20 text-center"
-        >
+        <section className="mt-20 text-center">
           <p className="text-gray-500 text-base mb-6 font-light">Prefer a direct conversation?</p>
           <motion.a
             whileHover={{ scale: 1.03 }}
@@ -308,7 +222,7 @@ export default function BulkOrders() {
           >
             Chat on WhatsApp
           </motion.a>
-        </motion.section>
+        </section>
       </div>
     </div>
   );

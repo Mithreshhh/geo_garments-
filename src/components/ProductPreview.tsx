@@ -64,36 +64,10 @@ export default function ProductPreview({ products }: ProductPreviewProps) {
 
   const itemsToShow = products || defaultProducts.slice(0, 6);
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.2,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.5 },
-    },
-  };
-
   return (
     <section className="py-24 md:py-36 bg-[#FAF8F5]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-          className="text-center mb-20"
-        >
+        <div className="text-center mb-20">
           <p className="geo-label mb-4">Curated Selection</p>
           <h2 className="geo-heading text-4xl md:text-5xl mb-5">
             Featured <span className="text-[#C8102E]">Collection</span>
@@ -101,40 +75,30 @@ export default function ProductPreview({ products }: ProductPreviewProps) {
           <p className="text-gray-500 text-lg font-light max-w-xl mx-auto">
             Hand-picked pieces from our latest range — designed for comfort, built to last.
           </p>
-        </motion.div>
+        </div>
 
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.1 }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16"
-        >
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
           {itemsToShow.map((product) => (
-            <motion.div
+            <div
               key={product.id}
-              variants={itemVariants}
               className="group cursor-pointer"
               onClick={() => navigate('/products')}
             >
-              <div className="relative overflow-hidden rounded-sm bg-white border border-gray-100 hover:shadow-[0_20px_50px_rgba(0,0,0,0.06)] transition-all duration-400">
+              <div className="relative overflow-hidden rounded-sm bg-white border border-gray-100 hover:shadow-[0_20px_50px_rgba(0,0,0,0.06)] transition-all duration-300">
                 <div className="relative h-80 bg-gray-100 overflow-hidden">
                   <img
                     src={product.image}
                     alt={product.name}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    loading="lazy"
                   />
                   <div className="absolute top-4 left-4 bg-[#0A0A0A] text-white px-3 py-1 rounded-sm text-[10px] font-semibold uppercase tracking-[0.15em]">
                     {product.category}
                   </div>
-                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-400 flex items-center justify-center">
-                    <motion.span
-                      initial={{ opacity: 0, y: 10 }}
-                      whileHover={{ opacity: 1, y: 0 }}
-                      className="text-white font-semibold text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-[#C8102E] px-6 py-2.5 uppercase tracking-[0.1em]"
-                    >
+                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300 flex items-center justify-center">
+                    <span className="text-white font-semibold text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-[#C8102E] px-6 py-2.5 uppercase tracking-[0.1em]">
                       View Details
-                    </motion.span>
+                    </span>
                   </div>
                 </div>
 
@@ -153,17 +117,11 @@ export default function ProductPreview({ products }: ProductPreviewProps) {
                   </div>
                 </div>
               </div>
-            </motion.div>
+            </div>
           ))}
-        </motion.div>
+        </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          viewport={{ once: true }}
-          className="text-center"
-        >
+        <div className="text-center">
           <motion.button
             whileHover={{ scale: 1.03 }}
             whileTap={{ scale: 0.97 }}
@@ -173,7 +131,7 @@ export default function ProductPreview({ products }: ProductPreviewProps) {
             View Full Collection
             <ArrowRight className="w-4 h-4" />
           </motion.button>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

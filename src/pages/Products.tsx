@@ -33,36 +33,11 @@ export default function Products() {
     ? products
     : products.filter(p => p.category === selectedCategory);
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.05,
-        delayChildren: 0.2,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.4 },
-    },
-  };
-
   return (
     <div className="min-h-screen bg-white pt-20">
       <section className="py-24 md:py-32 bg-[#FAF8F5]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-16"
-          >
+          <div className="text-center mb-16">
             <p className="geo-label mb-4">Our Collection</p>
             <h1 className="geo-heading text-5xl md:text-6xl mb-5">
               Premium <span className="text-[#C8102E]">Garments</span>
@@ -71,14 +46,9 @@ export default function Products() {
               Every piece is expertly crafted from premium fabrics, tailored for the perfect fit,
               and priced without middleman markups.
             </p>
-          </motion.div>
+          </div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="flex justify-center gap-3 mb-16"
-          >
+          <div className="flex justify-center gap-3 mb-16">
             {(['All', 'Shirts', 'Trousers'] as const).map((category) => (
               <motion.button
                 key={category}
@@ -94,27 +64,21 @@ export default function Products() {
                 {category}
               </motion.button>
             ))}
-          </motion.div>
+          </div>
 
-          <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            animate="visible"
-            key={selectedCategory}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16"
-          >
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
             {filteredProducts.map((product) => (
-              <motion.div
+              <div
                 key={product.id}
-                variants={itemVariants}
                 className="group cursor-pointer"
               >
-                <div className="relative overflow-hidden bg-white rounded-sm border border-gray-100 hover:shadow-[0_20px_50px_rgba(0,0,0,0.06)] transition-all duration-400">
+                <div className="relative overflow-hidden bg-white rounded-sm border border-gray-100 hover:shadow-[0_20px_50px_rgba(0,0,0,0.06)] transition-all duration-300">
                   <div className="relative h-80 bg-gray-100 overflow-hidden">
                     <img
                       src={product.image}
                       alt={product.name}
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                      loading="lazy"
                     />
                     {product.tag && (
                       <div className="absolute top-4 left-4 bg-[#0A0A0A] text-white px-3 py-1 rounded-sm text-[10px] font-semibold uppercase tracking-[0.15em]">
@@ -124,7 +88,7 @@ export default function Products() {
                     <div className="absolute top-4 right-4 bg-[#C8102E] text-white px-2.5 py-1 rounded-sm text-[10px] font-bold">
                       {Math.round((1 - product.price / product.originalPrice) * 100)}% OFF
                     </div>
-                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/15 transition-all duration-400" />
+                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/15 transition-all duration-300" />
                   </div>
                   <div className="p-6">
                     <p className="text-[10px] font-semibold text-[#C8102E] uppercase tracking-[0.15em] mb-2">
@@ -150,9 +114,9 @@ export default function Products() {
                     </motion.button>
                   </div>
                 </div>
-              </motion.div>
+              </div>
             ))}
-          </motion.div>
+          </div>
 
           {filteredProducts.length === 0 && (
             <div className="text-center py-20">
