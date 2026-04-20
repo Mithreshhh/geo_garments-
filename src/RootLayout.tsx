@@ -8,7 +8,7 @@ import ScrollToTopButton from './components/ScrollToTopButton';
 
 export default function RootLayout() {
   return (
-    <div className="flex flex-col min-h-screen bg-white overflow-x-hidden">
+    <div className="flex flex-col min-h-screen bg-white">
       <ScrollToTop />
       <ScrollProgress />
       <Navbar />

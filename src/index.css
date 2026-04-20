@@ -193,9 +193,17 @@
   }
 
   .glass {
-    backdrop-filter: blur(12px) saturate(180%);
-    -webkit-backdrop-filter: blur(12px) saturate(180%);
-    background: rgba(255, 255, 255, 0.85);
+    background: rgba(255, 255, 255, 0.97);
+  }
+
+  @supports (backdrop-filter: blur(12px)) {
+    @media (hover: hover) {
+      .glass {
+        backdrop-filter: blur(12px) saturate(180%);
+        -webkit-backdrop-filter: blur(12px) saturate(180%);
+        background: rgba(255, 255, 255, 0.85);
+      }
+    }
   }
 
   .text-gradient {
@@ -211,8 +219,7 @@
 }
 
 html {
-  scroll-behavior: smooth;
-  overflow-x: hidden;
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
@@ -226,15 +233,21 @@ body {
   font-feature-settings: 'cv11', 'ss01';
   text-rendering: optimizeLegibility;
   overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
 }
 
 #root {
   width: 100%;
   min-height: 100vh;
-  overflow-x: hidden;
 }
 
 ::selection {
   background: var(--color-geo-red);
   color: white;
+}
+
+@supports (-webkit-touch-callout: none) {
+  body {
+    min-height: -webkit-fill-available;
+  }
 }
