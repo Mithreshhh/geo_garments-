@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { MessageCircle } from 'lucide-react';
 
 interface Product {
   id: number;
@@ -103,11 +104,22 @@ export default function Products() {
                         ₹{product.originalPrice.toLocaleString()}
                       </p>
                     </div>
-                    <button
-                      className="w-full mt-5 px-6 py-3 border border-gray-200 text-[#0B0A08] text-xs font-semibold uppercase tracking-[0.1em] hover:bg-[#0B0A08] hover:text-white transition-all duration-300 active:scale-[0.97]"
-                    >
-                      Add to Cart
-                    </button>
+                    <div className="flex gap-3 mt-5">
+                      <button
+                        className="flex-1 px-6 py-3 border border-gray-200 text-[#0B0A08] text-xs font-semibold uppercase tracking-[0.1em] hover:bg-[#0B0A08] hover:text-white transition-all duration-300 active:scale-[0.97]"
+                      >
+                        Add to Cart
+                      </button>
+                      <a
+                        href={`https://wa.me/916300302421?text=${encodeURIComponent(`Hi, I'm interested in: ${product.name} (ID: ${product.id})`)}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center justify-center w-12 border border-[#25D366] text-[#25D366] hover:bg-[#25D366] hover:text-white transition-all duration-300 active:scale-[0.95] rounded-sm"
+                        title={`Enquire about ${product.name} on WhatsApp`}
+                      >
+                        <MessageCircle className="w-5 h-5" />
+                      </a>
+                    </div>
                   </div>
                 </div>
               </div>

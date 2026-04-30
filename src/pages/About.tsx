@@ -1,4 +1,5 @@
 import { useNavigate } from 'react-router-dom';
+import CountUp from '../components/CountUp';
 
 export default function About() {
   const navigate = useNavigate();
@@ -42,7 +43,7 @@ export default function About() {
                 The Geo <span className="text-[#B8935B]">Story</span>
               </h2>
               <p className="text-gray-600 text-base leading-relaxed">
-                Founded in Kompally, Hyderabad, Geo Garments was born from a clear conviction: 
+                Founded in Kompally, Hyderabad (Western Plaza, Satyam Enclave), Geo Garments was born from a clear conviction: 
                 premium clothing should not carry a premium price. By manufacturing in-house and 
                 selling directly, we remove every unnecessary cost between our factory floor and 
                 your wardrobe.
@@ -143,19 +144,30 @@ export default function About() {
 
         <section className="bg-[#0B0A08] text-white py-20 px-8 rounded-sm mb-28">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-            {[
-              { number: '2,000+', label: 'Orders Fulfilled' },
-              { number: '10,000+', label: 'Happy Customers' },
-              { number: '50+', label: 'Expert Tailors' },
-              { number: '4.9/5', label: 'Average Rating' },
-            ].map((stat, idx) => (
-              <div key={idx}>
-                <p className="text-3xl md:text-4xl font-display font-bold text-[#B8935B] mb-2">
-                  {stat.number}
-                </p>
-                <p className="text-gray-400 text-sm font-light">{stat.label}</p>
-              </div>
-            ))}
+            <div>
+              <p className="text-3xl md:text-4xl font-display font-bold text-[#B8935B] mb-2">
+                <CountUp end={2000} suffix="+" />
+              </p>
+              <p className="text-gray-400 text-sm font-light">Orders Fulfilled</p>
+            </div>
+            <div>
+              <p className="text-3xl md:text-4xl font-display font-bold text-[#B8935B] mb-2">
+                <CountUp end={10000} suffix="+" />
+              </p>
+              <p className="text-gray-400 text-sm font-light">Happy Customers</p>
+            </div>
+            <div>
+              <p className="text-3xl md:text-4xl font-display font-bold text-[#B8935B] mb-2">
+                <CountUp end={50} suffix="+" />
+              </p>
+              <p className="text-gray-400 text-sm font-light">Expert Tailors</p>
+            </div>
+            <div>
+              <p className="text-3xl md:text-4xl font-display font-bold text-[#B8935B] mb-2">
+                <CountUp end={4.9} decimals={1} suffix="/5" />
+              </p>
+              <p className="text-gray-400 text-sm font-light">Average Rating</p>
+            </div>
           </div>
         </section>
 

@@ -1,7 +1,18 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import { Check, Building2, GraduationCap, Store } from 'lucide-react';
 
 export default function BulkOrders() {
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.hash === '#quote-form') {
+      setTimeout(() => {
+        document.getElementById('quote-form')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }, 100);
+    }
+  }, [location]);
+
   const [formData, setFormData] = useState({
     name: '',
     businessName: '',
@@ -25,7 +36,7 @@ export default function BulkOrders() {
 
   return (
     <div className="min-h-screen bg-white pt-20">
-      <section className="py-24 md:py-36 text-white relative overflow-hidden" style={{ background: 'linear-gradient(180deg, #0B0A08 0%, #1A1815 60%, #0B0A08 100%)' }}>
+      <section className="py-16 md:py-24 text-white relative overflow-hidden" style={{ background: 'linear-gradient(180deg, #0B0A08 0%, #1A1815 60%, #0B0A08 100%)' }}>
         <div className="absolute inset-0 pointer-events-none">
           <div className="absolute top-[-20%] right-[-10%] w-[500px] h-[500px] bg-[#B8935B] rounded-full blur-[200px] opacity-[0.12]" />
           <div className="absolute bottom-[-15%] left-[-10%] w-[400px] h-[400px] bg-[#B8935B] rounded-full blur-[180px] opacity-[0.08]" />
@@ -45,9 +56,9 @@ export default function BulkOrders() {
         </div>
       </section>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-36">
-        <section className="mb-28">
-          <div className="text-center mb-16">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+        <section className="mb-16">
+          <div className="text-center mb-10">
             <p className="geo-label mb-4">Who We Serve</p>
             <h2 className="geo-heading text-4xl md:text-5xl">
               Built for <span className="text-[#B8935B]">Your Business</span>
@@ -76,8 +87,8 @@ export default function BulkOrders() {
           </div>
         </section>
 
-        <section className="mb-28">
-          <div className="text-center mb-16">
+        <section className="mb-16">
+          <div className="text-center mb-10">
             <p className="geo-label mb-4">Why Order in Bulk</p>
             <h2 className="geo-heading text-4xl md:text-5xl">
               Advantages of <span className="text-[#B8935B]">Partnering with Us</span>
@@ -108,8 +119,8 @@ export default function BulkOrders() {
           </div>
         </section>
 
-        <section className="mb-28">
-          <div className="text-center mb-16">
+        <section className="mb-16">
+          <div className="text-center mb-10">
             <p className="geo-label mb-4">How It Works</p>
             <h2 className="geo-heading text-4xl md:text-5xl">
               A Simple, <span className="text-[#B8935B]">Streamlined Process</span>
@@ -136,7 +147,7 @@ export default function BulkOrders() {
           </div>
         </section>
 
-        <section className="max-w-2xl mx-auto">
+        <section id="quote-form" className="max-w-2xl mx-auto">
           <div className="bg-[#F6F1E8] border border-gray-100 p-10 md:p-14 rounded-sm">
             <div className="text-center mb-10">
               <p className="geo-label mb-3">Get Started</p>
@@ -212,7 +223,7 @@ export default function BulkOrders() {
         <section className="mt-20 text-center">
           <p className="text-gray-500 text-base mb-6 font-light">Prefer a direct conversation?</p>
           <a
-            href="https://wa.me/917XXXXXXXXXXXX"
+            href="https://wa.me/916300302421"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-block geo-btn-primary text-sm uppercase tracking-[0.1em] active:scale-[0.97]"

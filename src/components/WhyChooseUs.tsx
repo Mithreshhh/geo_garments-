@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { Check } from 'lucide-react';
+import CountUp from './CountUp';
 
 export default function WhyChooseUs() {
   const navigate = useNavigate();
@@ -39,7 +40,7 @@ export default function WhyChooseUs() {
               <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent" />
             </div>
             <div className="absolute -bottom-6 -right-6 lg:-right-8 bg-[#0B0A08] text-white p-6 rounded-sm shadow-2xl max-w-[220px] border border-[#B8935B]/30">
-              <p className="font-display text-3xl font-bold leading-none text-[#B8935B]">10,000+</p>
+              <p className="font-display text-3xl font-bold leading-none text-[#B8935B]"><CountUp end={10000} suffix="+" /></p>
               <p className="text-sm mt-2 text-white/70 font-light">
                 Satisfied customers across India
               </p>

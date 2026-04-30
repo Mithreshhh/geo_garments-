@@ -38,16 +38,16 @@ export default function Navbar() {
     { label: 'Contact', path: '/contact' },
   ];
 
-  const linkColor = isScrolled ? 'text-gray-800' : 'text-white';
-  const subLogoColor = isScrolled ? 'text-gray-900' : 'text-white';
-  const barColor = isScrolled ? 'bg-gray-900' : 'bg-white';
+  const linkColor = 'text-gray-800';
+  const subLogoColor = 'text-gray-900';
+  const barColor = 'bg-gray-900';
 
   return (
     <nav
       className={`fixed w-full top-0 z-50 transition-all duration-500 ${
         isScrolled
           ? 'bg-[#F6F1E8]/97 shadow-[0_1px_20px_rgba(11,10,8,0.08)] border-b border-[#B8935B]/10'
-          : 'bg-transparent'
+          : 'bg-[#F6F1E8]/90'
       }`}
       style={{
         transform: isVisible ? 'translateY(0)' : 'translateY(-100%)',
@@ -82,12 +82,8 @@ export default function Navbar() {
 
           <div className="flex items-center space-x-4">
             <button
-              onClick={() => navigate('/bulk-orders')}
-              className={`text-xs px-6 py-2.5 hidden md:inline-flex items-center font-semibold uppercase tracking-[0.12em] transition-all duration-300 ${
-                isScrolled
-                  ? 'bg-[#0B0A08] text-white hover:bg-[#B8935B] hover:text-[#0B0A08]'
-                  : 'bg-[#B8935B] text-[#0B0A08] hover:bg-[#D4B88A]'
-              }`}
+              onClick={() => navigate('/bulk-orders#quote-form')}
+              className="text-xs px-6 py-2.5 hidden md:inline-flex items-center font-semibold uppercase tracking-[0.12em] transition-all duration-300 bg-[#0B0A08] text-white hover:bg-[#B8935B] hover:text-[#0B0A08]"
             >
               Request a Quote
             </button>
@@ -132,7 +128,7 @@ export default function Navbar() {
               <div className="px-4 pt-2">
                 <button
                   onClick={() => {
-                    navigate('/bulk-orders');
+                    navigate('/bulk-orders#quote-form');
                     setIsMenuOpen(false);
                   }}
                   className="geo-btn-primary text-sm w-full"

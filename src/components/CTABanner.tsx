@@ -47,7 +47,7 @@ export default function CTABanner() {
               Explore Collection
             </button>
             <button
-              onClick={() => navigate('/bulk-orders')}
+              onClick={() => navigate('/bulk-orders#quote-form')}
               className="px-10 py-4 border border-gray-600 text-white font-semibold text-sm uppercase tracking-[0.1em] transition-all duration-300 hover:bg-white hover:text-[#0B0A08] active:scale-[0.97]"
             >
               Request Bulk Quote

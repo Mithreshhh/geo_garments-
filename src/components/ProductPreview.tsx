@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, MessageCircle } from 'lucide-react';
 
 interface Product {
   id: number;
@@ -112,7 +112,19 @@ export default function ProductPreview({ products }: ProductPreviewProps) {
                     <p className="text-xl font-bold text-[#0B0A08]">
                       ₹{product.price.toLocaleString()}
                     </p>
-                    <ArrowRight className="w-4 h-4 text-gray-400 group-hover:text-[#B8935B] group-hover:translate-x-1 transition-all duration-300" />
+                    <div className="flex items-center gap-2">
+                      <a
+                        href={`https://wa.me/916300302421?text=${encodeURIComponent(`Hi, I'm interested in: ${product.name} (ID: ${product.id})`)}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={(e) => e.stopPropagation()}
+                        className="w-8 h-8 flex items-center justify-center border border-[#25D366] text-[#25D366] hover:bg-[#25D366] hover:text-white transition-all duration-300 active:scale-[0.95] rounded-sm"
+                        title={`Enquire about ${product.name} on WhatsApp`}
+                      >
+                        <MessageCircle className="w-4 h-4" />
+                      </a>
+                      <ArrowRight className="w-4 h-4 text-gray-400 group-hover:text-[#B8935B] group-hover:translate-x-1 transition-all duration-300" />
+                    </div>
                   </div>
                 </div>
               </div>

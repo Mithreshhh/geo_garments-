@@ -43,11 +43,11 @@ export default function Footer() {
             <ul className="space-y-4 text-sm text-gray-400">
               <li className="flex items-start gap-3">
                 <MapPin className="w-4 h-4 text-[#B8935B] mt-0.5 shrink-0" />
-                <span className="font-light">Kompally, Hyderabad<br />Telangana, India</span>
+                <span className="font-light">Western Plaza, beside Bata,<br />Ruby Block, Satyam Enclave,<br />Kompally, Hyderabad,<br />Telangana 500014</span>
               </li>
               <li className="flex items-center gap-3">
                 <Phone className="w-4 h-4 text-[#B8935B] shrink-0" />
-                <span className="font-light">+91 XXXX XXXX XX</span>
+                <span className="font-light">+91 63003 02421</span>
               </li>
               <li className="flex items-center gap-3">
                 <Mail className="w-4 h-4 text-[#B8935B] shrink-0" />
@@ -60,7 +60,7 @@ export default function Footer() {
             <h4 className="font-semibold text-sm uppercase tracking-[0.1em] mb-6">Connect</h4>
             <div className="flex space-x-3 mb-6">
               <a
-                href="https://instagram.com"
+                href="https://www.instagram.com/geo.garments_/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-10 h-10 border border-gray-700 text-gray-400 flex items-center justify-center hover:border-[#B8935B] hover:text-[#B8935B] transition-all duration-300 rounded-sm text-sm"
@@ -69,7 +69,7 @@ export default function Footer() {
                 IG
               </a>
               <a
-                href="https://wa.me/917XXXXXXXXXXXX"
+                href="https://wa.me/916300302421"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-10 h-10 border border-gray-700 text-gray-400 flex items-center justify-center hover:border-[#B8935B] hover:text-[#B8935B] transition-all duration-300 rounded-sm text-sm"
@@ -79,7 +79,7 @@ export default function Footer() {
               </a>
             </div>
             <a
-              href="https://wa.me/917XXXXXXXXXXXX"
+              href="https://wa.me/916300302421"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-block px-6 py-2.5 bg-[#B8935B] text-[#0B0A08] text-xs font-semibold uppercase tracking-[0.15em] hover:bg-[#D4B88A] transition-colors duration-300 active:scale-[0.97]"

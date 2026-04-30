@@ -1,4 +1,5 @@
 import { Star } from 'lucide-react';
+import CountUp from './CountUp';
 
 interface Testimonial {
   id: number;
@@ -93,18 +94,24 @@ export default function Testimonials() {
         </div>
 
         <div className="grid grid-cols-3 gap-8 mt-20 max-w-2xl mx-auto">
-          {[
-            { number: '10,000+', label: 'Happy Customers' },
-            { number: '4.9/5', label: 'Average Rating' },
-            { number: '99%', label: 'Would Recommend' },
-          ].map((stat, index) => (
-            <div key={index} className="text-center">
-              <p className="text-3xl md:text-4xl font-display font-bold text-[#B8935B] mb-1">
-                {stat.number}
-              </p>
-              <p className="text-gray-400 text-xs uppercase tracking-[0.1em]">{stat.label}</p>
-            </div>
-          ))}
+          <div className="text-center">
+            <p className="text-3xl md:text-4xl font-display font-bold text-[#B8935B] mb-1">
+              <CountUp end={10000} suffix="+" />
+            </p>
+            <p className="text-gray-400 text-xs uppercase tracking-[0.1em]">Happy Customers</p>
+          </div>
+          <div className="text-center">
+            <p className="text-3xl md:text-4xl font-display font-bold text-[#B8935B] mb-1">
+              <CountUp end={4.9} decimals={1} suffix="/5" />
+            </p>
+            <p className="text-gray-400 text-xs uppercase tracking-[0.1em]">Average Rating</p>
+          </div>
+          <div className="text-center">
+            <p className="text-3xl md:text-4xl font-display font-bold text-[#B8935B] mb-1">
+              <CountUp end={99} suffix="%" />
+            </p>
+            <p className="text-gray-400 text-xs uppercase tracking-[0.1em]">Would Recommend</p>
+          </div>
         </div>
       </div>
     </section>

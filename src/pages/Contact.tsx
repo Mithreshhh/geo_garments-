@@ -27,16 +27,16 @@ export default function Contact() {
     {
       icon: MapPin,
       title: 'Visit Us',
-      value: 'Kompally, Hyderabad',
-      desc: 'Telangana, India',
+      value: 'Western Plaza, beside Bata, Ruby Block',
+      desc: 'Satyam Enclave, Kompally, Hyderabad, Telangana 500014',
       href: undefined,
     },
     {
       icon: Phone,
       title: 'Call Us',
-      value: '+91 XXXX XXXX XX',
+      value: '+91 63003 02421',
       desc: 'Monday – Saturday, 9 AM – 7 PM',
-      href: 'tel:+91XXXXXXXXXX',
+      href: 'tel:+916300302421',
     },
     {
       icon: Mail,
@@ -50,13 +50,13 @@ export default function Contact() {
       title: 'WhatsApp',
       value: 'Chat with our team',
       desc: 'Instant replies during business hours',
-      href: 'https://wa.me/917XXXXXXXXXXXX',
+      href: 'https://wa.me/916300302421',
     },
   ];
 
   return (
     <div className="min-h-screen bg-white pt-20">
-      <section className="py-24 md:py-36 text-white relative overflow-hidden" style={{ background: 'linear-gradient(180deg, #0B0A08 0%, #1A1815 60%, #0B0A08 100%)' }}>
+      <section className="py-16 md:py-24 text-white relative overflow-hidden" style={{ background: 'linear-gradient(180deg, #0B0A08 0%, #1A1815 60%, #0B0A08 100%)' }}>
         <div className="absolute inset-0 pointer-events-none">
           <div className="absolute top-[-20%] right-[-10%] w-[500px] h-[500px] bg-[#B8935B] rounded-full blur-[200px] opacity-[0.12]" />
           <div className="absolute bottom-[-15%] left-[-10%] w-[400px] h-[400px] bg-[#B8935B] rounded-full blur-[180px] opacity-[0.08]" />
@@ -76,9 +76,9 @@ export default function Contact() {
         </div>
       </section>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-36">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
-          <div className="space-y-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+          <div className="space-y-8">
             <div>
               <p className="geo-label mb-3">Reach Out</p>
               <h2 className="geo-heading text-4xl md:text-5xl mb-4">
@@ -121,8 +121,8 @@ export default function Contact() {
               <h3 className="font-semibold text-[#0B0A08] text-sm mb-4 uppercase tracking-[0.1em]">Follow Us</h3>
               <div className="flex gap-3">
                 {[
-                  { label: 'IG', title: 'Instagram', href: 'https://instagram.com' },
-                  { label: 'WA', title: 'WhatsApp', href: 'https://wa.me/917XXXXXXXXXXXX' },
+                  { label: 'IG', title: 'Instagram', href: 'https://www.instagram.com/geo.garments_/' },
+                  { label: 'WA', title: 'WhatsApp', href: 'https://wa.me/916300302421' },
                   { label: 'FB', title: 'Facebook', href: 'https://facebook.com' },
                 ].map((social, idx) => (
                   <a
@@ -209,7 +209,7 @@ export default function Contact() {
           </div>
         </div>
 
-        <section className="mt-24">
+        <section className="mt-16">
           <div className="text-center mb-10">
             <p className="geo-label mb-3">Find Us</p>
             <h2 className="geo-heading text-3xl md:text-4xl">
@@ -218,7 +218,7 @@ export default function Contact() {
           </div>
           <div className="w-full h-96 bg-gray-100 rounded-sm overflow-hidden border border-gray-100">
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3806.8434265000003!2d78.47454977346088!3d17.360528400000004!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1sKompally%2C%20Hyderabad!2s!5e0!3m2!1sen!2sin!4v1234567890"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3806.0!2d78.4865596!3d17.5328837!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb85003913dfe3%3A0x56973e4bf8fd0964!2sGeo%20Garments!5e0!3m2!1sen!2sin!4v1234567890"
               width="100%"
               height="100%"
               style={{ border: 'none' }}
@@ -241,7 +241,7 @@ export default function Contact() {
             Our team is available on WhatsApp for quick responses during business hours.
           </p>
           <a
-            href="https://wa.me/917XXXXXXXXXXXX"
+            href="https://wa.me/916300302421"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-block px-8 py-3.5 bg-[#B8935B] text-[#0B0A08] text-sm font-semibold uppercase tracking-[0.15em] hover:bg-[#D4B88A] transition-colors duration-300 active:scale-[0.97]"
