@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { MapPin, Phone, Mail, MessageCircle } from 'lucide-react';
 
+const FORM_EMAIL = 'mithreshuttarwarmmvi@gmail.com';
+
 export default function Contact() {
   const [formData, setFormData] = useState({
     name: '',
@@ -9,6 +11,7 @@ export default function Contact() {
     subject: '',
     message: '',
   });
+  const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({
@@ -17,10 +20,35 @@ export default function Contact() {
     });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
-    setFormData({ name: '', email: '', phone: '', subject: '', message: '' });
+    setStatus('sending');
+    try {
+      const res = await fetch(`https://formsubmit.co/ajax/${FORM_EMAIL}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({
+          _subject: `Geo Garments Contact: ${formData.subject}`,
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone || 'Not provided',
+          subject: formData.subject,
+          message: formData.message,
+        }),
+      });
+      const data = await res.json();
+      if (data.success === 'true' || data.success === true) {
+        setStatus('success');
+        setFormData({ name: '', email: '', phone: '', subject: '', message: '' });
+        setTimeout(() => setStatus('idle'), 4000);
+      } else {
+        setStatus('error');
+        setTimeout(() => setStatus('idle'), 4000);
+      }
+    } catch {
+      setStatus('error');
+      setTimeout(() => setStatus('idle'), 4000);
+    }
   };
 
   const contactInfo = [
@@ -198,10 +226,21 @@ export default function Contact() {
               />
               <button
                 type="submit"
-                className="w-full geo-btn-primary text-sm uppercase tracking-[0.1em] active:scale-[0.97]"
+                disabled={status === 'sending'}
+                className="w-full geo-btn-primary text-sm uppercase tracking-[0.1em] active:scale-[0.97] disabled:opacity-60 disabled:cursor-not-allowed"
               >
-                Send Message
+                {status === 'sending' ? 'Sending...' : status === 'success' ? 'Message Sent!' : 'Send Message'}
               </button>
+              {status === 'success' && (
+                <p className="text-[12px] text-green-600 text-center font-medium">
+                  Thank you! We will get back to you shortly.
+                </p>
+              )}
+              {status === 'error' && (
+                <p className="text-[12px] text-red-500 text-center font-medium">
+                  Something went wrong. Please try again or contact us on WhatsApp.
+                </p>
+              )}
               <p className="text-[11px] text-gray-400 text-center font-light">
                 Your information is safe with us. We never share your data.
               </p>

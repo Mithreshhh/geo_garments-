@@ -29,8 +29,8 @@ export default function WhyChooseUs() {
       <div className="absolute inset-0 pointer-events-none opacity-[0.03]" style={{ backgroundImage: 'radial-gradient(#0B0A08 1px, transparent 1px)', backgroundSize: '32px 32px' }} />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-          <div className="relative">
-            <div className="relative overflow-hidden rounded-sm shadow-2xl aspect-[4/5]">
+          <div className="relative order-2 lg:order-1">
+            <div className="relative overflow-hidden rounded-sm shadow-2xl aspect-[16/10] lg:aspect-[4/5]">
               <img
                 src="https://images.unsplash.com/photo-1558171813-4c088753af8f?w=800&q=80"
                 alt="Premium Tailoring Process"
@@ -47,7 +47,7 @@ export default function WhyChooseUs() {
             </div>
           </div>
 
-          <div className="space-y-8">
+          <div className="space-y-8 order-1 lg:order-2">
             <div>
               <p className="geo-label mb-3">Built on Trust</p>
               <h2 className="geo-heading text-4xl md:text-5xl mb-5">

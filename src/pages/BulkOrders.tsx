@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { Check, Building2, GraduationCap, Store } from 'lucide-react';
 
+const FORM_EMAIL = 'mithreshuttarwarmmvi@gmail.com';
+
 export default function BulkOrders() {
   const location = useLocation();
 
@@ -20,6 +22,7 @@ export default function BulkOrders() {
     phone: '',
     message: '',
   });
+  const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({
@@ -28,10 +31,35 @@ export default function BulkOrders() {
     });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
-    setFormData({ name: '', businessName: '', quantity: '', phone: '', message: '' });
+    setStatus('sending');
+    try {
+      const res = await fetch(`https://formsubmit.co/ajax/${FORM_EMAIL}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({
+          _subject: `Geo Garments Bulk Order: ${formData.businessName} — ${formData.quantity} units`,
+          name: formData.name,
+          'Business Name': formData.businessName,
+          'Quantity Required': formData.quantity,
+          phone: formData.phone,
+          message: formData.message || 'No additional details provided',
+        }),
+      });
+      const data = await res.json();
+      if (data.success === 'true' || data.success === true) {
+        setStatus('success');
+        setFormData({ name: '', businessName: '', quantity: '', phone: '', message: '' });
+        setTimeout(() => setStatus('idle'), 4000);
+      } else {
+        setStatus('error');
+        setTimeout(() => setStatus('idle'), 4000);
+      }
+    } catch {
+      setStatus('error');
+      setTimeout(() => setStatus('idle'), 4000);
+    }
   };
 
   return (
@@ -209,10 +237,21 @@ export default function BulkOrders() {
               />
               <button
                 type="submit"
-                className="w-full geo-btn-primary text-sm uppercase tracking-[0.1em] active:scale-[0.97]"
+                disabled={status === 'sending'}
+                className="w-full geo-btn-primary text-sm uppercase tracking-[0.1em] active:scale-[0.97] disabled:opacity-60 disabled:cursor-not-allowed"
               >
-                Submit Enquiry
+                {status === 'sending' ? 'Submitting...' : status === 'success' ? 'Enquiry Sent!' : 'Submit Enquiry'}
               </button>
+              {status === 'success' && (
+                <p className="text-[12px] text-green-600 text-center font-medium">
+                  Thank you! We will send your quote within 24 hours.
+                </p>
+              )}
+              {status === 'error' && (
+                <p className="text-[12px] text-red-500 text-center font-medium">
+                  Something went wrong. Please try again or contact us on WhatsApp.
+                </p>
+              )}
               <p className="text-[11px] text-gray-400 text-center font-light">
                 No obligation. We will respond with a detailed quote within 24 hours.
               </p>

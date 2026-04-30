@@ -45,23 +45,9 @@ export default function ProductPreview({ products }: ProductPreviewProps) {
       category: 'Trousers',
       image: 'https://images.unsplash.com/photo-1473966968600-fa801b869a1a?w=600&q=80',
     },
-    {
-      id: 5,
-      name: 'Executive Linen Shirt',
-      price: 699,
-      category: 'Shirts',
-      image: 'https://images.unsplash.com/photo-1598033129183-c4f50c736c10?w=600&q=80',
-    },
-    {
-      id: 6,
-      name: 'Indigo Selvedge Denim',
-      price: 899,
-      category: 'Trousers',
-      image: 'https://images.unsplash.com/photo-1542272604-787c3835535d?w=600&q=80',
-    },
   ];
 
-  const itemsToShow = products || defaultProducts.slice(0, 6);
+  const itemsToShow = products || defaultProducts;
 
   return (
     <section className="py-20 md:py-28 bg-[#F6F1E8]">
@@ -76,7 +62,7 @@ export default function ProductPreview({ products }: ProductPreviewProps) {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-8 mb-16">
           {itemsToShow.map((product) => (
             <div
               key={product.id}
@@ -84,14 +70,14 @@ export default function ProductPreview({ products }: ProductPreviewProps) {
               onClick={() => navigate('/products')}
             >
               <div className="relative overflow-hidden rounded-sm bg-white border border-gray-100 hover:shadow-[0_20px_50px_rgba(0,0,0,0.06)] transition-all duration-300">
-                <div className="relative h-80 bg-gray-100 overflow-hidden">
+                <div className="relative h-48 md:h-80 bg-gray-100 overflow-hidden">
                   <img
                     src={product.image}
                     alt={product.name}
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                     loading="lazy"
                   />
-                  <div className="absolute top-4 left-4 bg-[#0B0A08] text-white px-3 py-1 rounded-sm text-[10px] font-semibold uppercase tracking-[0.15em]">
+                  <div className="absolute top-2 left-2 md:top-4 md:left-4 bg-[#0B0A08] text-white px-2 py-0.5 md:px-3 md:py-1 rounded-sm text-[8px] md:text-[10px] font-semibold uppercase tracking-[0.15em]">
                     {product.category}
                   </div>
                   <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300 flex items-center justify-center">
@@ -101,29 +87,29 @@ export default function ProductPreview({ products }: ProductPreviewProps) {
                   </div>
                 </div>
 
-                <div className="p-6">
-                  <p className="text-[10px] font-semibold text-[#B8935B] uppercase tracking-[0.15em] mb-2">
+                <div className="p-3 md:p-6">
+                  <p className="text-[8px] md:text-[10px] font-semibold text-[#B8935B] uppercase tracking-[0.15em] mb-1 md:mb-2">
                     {product.category}
                   </p>
-                  <h3 className="text-base font-semibold text-[#0B0A08] mb-3 group-hover:text-[#B8935B] transition-colors">
+                  <h3 className="text-xs md:text-base font-semibold text-[#0B0A08] mb-2 md:mb-3 group-hover:text-[#B8935B] transition-colors line-clamp-2">
                     {product.name}
                   </h3>
                   <div className="flex items-center justify-between">
-                    <p className="text-xl font-bold text-[#0B0A08]">
+                    <p className="text-sm md:text-xl font-bold text-[#0B0A08]">
                       ₹{product.price.toLocaleString()}
                     </p>
-                    <div className="flex items-center gap-2">
+                    <div className="flex items-center gap-1.5 md:gap-2">
                       <a
                         href={`https://wa.me/916300302421?text=${encodeURIComponent(`Hi, I'm interested in: ${product.name} (ID: ${product.id})`)}`}
                         target="_blank"
                         rel="noopener noreferrer"
                         onClick={(e) => e.stopPropagation()}
-                        className="w-8 h-8 flex items-center justify-center border border-[#25D366] text-[#25D366] hover:bg-[#25D366] hover:text-white transition-all duration-300 active:scale-[0.95] rounded-sm"
+                        className="w-7 h-7 md:w-8 md:h-8 flex items-center justify-center border border-[#25D366] text-[#25D366] hover:bg-[#25D366] hover:text-white transition-all duration-300 active:scale-[0.95] rounded-sm"
                         title={`Enquire about ${product.name} on WhatsApp`}
                       >
-                        <MessageCircle className="w-4 h-4" />
+                        <MessageCircle className="w-3.5 h-3.5 md:w-4 md:h-4" />
                       </a>
-                      <ArrowRight className="w-4 h-4 text-gray-400 group-hover:text-[#B8935B] group-hover:translate-x-1 transition-all duration-300" />
+                      <ArrowRight className="w-3.5 h-3.5 md:w-4 md:h-4 text-gray-400 group-hover:text-[#B8935B] group-hover:translate-x-1 transition-all duration-300" />
                     </div>
                   </div>
                 </div>

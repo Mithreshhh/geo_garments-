@@ -1,3 +1,8 @@
+# About.tsx — Original Backup (Before Mobile Optimization)
+
+Replace the contents of `src/pages/About.tsx` with the code below to restore the original version.
+
+```tsx
 import { useNavigate } from 'react-router-dom';
 import CountUp from '../components/CountUp';
 
@@ -26,18 +31,18 @@ export default function About() {
         </div>
       </section>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-36">
-        <section className="mb-16 md:mb-28">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
-            <div className="order-2 lg:order-1">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-36">
+        <section className="mb-28">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div>
               <img
                 src="https://images.unsplash.com/photo-1558171813-4c088753af8f?w=800&q=80"
                 alt="Geo Garments — our manufacturing facility"
-                className="w-full rounded-sm shadow-2xl aspect-[16/10] lg:aspect-[4/5] object-cover"
+                className="w-full rounded-sm shadow-2xl aspect-[4/5] object-cover"
                 loading="lazy"
               />
             </div>
-            <div className="space-y-6 order-1 lg:order-2">
+            <div className="space-y-6">
               <p className="geo-label">Our Beginning</p>
               <h2 className="geo-heading text-4xl md:text-5xl">
                 The Geo <span className="text-[#B8935B]">Story</span>
@@ -62,15 +67,15 @@ export default function About() {
           </div>
         </section>
 
-        <section className="mb-16 md:mb-28">
-          <div className="text-center mb-8 md:mb-16">
+        <section className="mb-28">
+          <div className="text-center mb-16">
             <p className="geo-label mb-4">Our Purpose</p>
             <h2 className="geo-heading text-4xl md:text-5xl">
               Mission <span className="text-[#B8935B]">&</span> Vision
             </h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="p-6 md:p-10 bg-[#F6F1E8] border-l-2 border-[#B8935B] rounded-sm">
+            <div className="p-10 bg-[#F6F1E8] border-l-2 border-[#B8935B] rounded-sm">
               <p className="geo-label mb-4">Mission</p>
               <p className="text-gray-600 leading-relaxed">
                 To deliver expertly tailored clothing at factory-direct prices, making 
@@ -78,7 +83,7 @@ export default function About() {
                 artisans and strengthening local manufacturing.
               </p>
             </div>
-            <div className="p-6 md:p-10 bg-[#F6F1E8] border-l-2 border-[#B8935B] rounded-sm">
+            <div className="p-10 bg-[#F6F1E8] border-l-2 border-[#B8935B] rounded-sm">
               <p className="geo-label mb-4">Vision</p>
               <p className="text-gray-600 leading-relaxed">
                 To become India&apos;s most trusted factory-direct clothing brand — recognised for 
@@ -89,14 +94,14 @@ export default function About() {
           </div>
         </section>
 
-        <section className="mb-16 md:mb-28">
-          <div className="text-center mb-8 md:mb-16">
+        <section className="mb-28">
+          <div className="text-center mb-16">
             <p className="geo-label mb-4">What We Stand For</p>
             <h2 className="geo-heading text-4xl md:text-5xl">
               Our <span className="text-[#B8935B]">Values</span>
             </h2>
           </div>
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
               { title: 'Quality First', desc: 'Every piece reflects our commitment to excellence and precision craftsmanship.' },
               { title: 'Honest Pricing', desc: 'No inflated margins, no hidden costs — just the true cost of quality.' },
@@ -105,26 +110,26 @@ export default function About() {
             ].map((value, idx) => (
               <div
                 key={idx}
-                className="p-5 md:p-8 bg-[#F6F1E8] rounded-sm border border-gray-100 text-center"
+                className="p-8 bg-[#F6F1E8] rounded-sm border border-gray-100 text-center"
               >
-                <div className="w-10 h-10 md:w-12 md:h-12 bg-[#0B0A08] text-[#B8935B] rounded-full flex items-center justify-center font-display font-bold text-base md:text-lg mx-auto mb-3 md:mb-5 ring-1 ring-[#B8935B]/30">
+                <div className="w-12 h-12 bg-[#0B0A08] text-[#B8935B] rounded-full flex items-center justify-center font-display font-bold text-lg mx-auto mb-5 ring-1 ring-[#B8935B]/30">
                   {idx + 1}
                 </div>
-                <h3 className="font-semibold text-[#0B0A08] text-sm md:text-lg mb-2 md:mb-3">{value.title}</h3>
-                <p className="text-gray-500 text-xs md:text-sm leading-relaxed font-light">{value.desc}</p>
+                <h3 className="font-semibold text-[#0B0A08] text-lg mb-3">{value.title}</h3>
+                <p className="text-gray-500 text-sm leading-relaxed font-light">{value.desc}</p>
               </div>
             ))}
           </div>
         </section>
 
-        <section className="mb-16 md:mb-28">
-          <div className="text-center mb-8 md:mb-16">
+        <section className="mb-28">
+          <div className="text-center mb-16">
             <p className="geo-label mb-4">Our Process</p>
             <h2 className="geo-heading text-4xl md:text-5xl">
               How We <span className="text-[#B8935B]">Work</span>
             </h2>
           </div>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-5 md:gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             {[
               { step: 1, title: 'Fabric Selection', desc: 'Premium fabrics sourced from trusted mills for durability and comfort.' },
               { step: 2, title: 'Precision Cutting', desc: 'Advanced pattern cutting for consistent sizing and minimal waste.' },
@@ -132,17 +137,17 @@ export default function About() {
               { step: 4, title: 'Quality Assurance', desc: 'Multi-point inspection ensures only perfect garments leave our facility.' },
             ].map((item) => (
               <div key={item.step} className="text-center">
-                <div className="w-11 h-11 md:w-14 md:h-14 bg-[#0B0A08] text-[#B8935B] rounded-full flex items-center justify-center font-display font-bold text-lg md:text-xl mx-auto mb-3 md:mb-5 ring-1 ring-[#B8935B]/30">
+                <div className="w-14 h-14 bg-[#0B0A08] text-[#B8935B] rounded-full flex items-center justify-center font-display font-bold text-xl mx-auto mb-5 ring-1 ring-[#B8935B]/30">
                   {item.step}
                 </div>
-                <h3 className="font-semibold text-[#0B0A08] text-sm md:text-lg mb-1 md:mb-2">{item.title}</h3>
-                <p className="text-gray-500 text-xs md:text-sm leading-relaxed font-light">{item.desc}</p>
+                <h3 className="font-semibold text-[#0B0A08] text-lg mb-2">{item.title}</h3>
+                <p className="text-gray-500 text-sm leading-relaxed font-light">{item.desc}</p>
               </div>
             ))}
           </div>
         </section>
 
-        <section className="bg-[#0B0A08] text-white py-12 px-5 md:py-20 md:px-8 rounded-sm mb-16 md:mb-28">
+        <section className="bg-[#0B0A08] text-white py-20 px-8 rounded-sm mb-28">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             <div>
               <p className="text-3xl md:text-4xl font-display font-bold text-[#B8935B] mb-2">
@@ -190,3 +195,4 @@ export default function About() {
     </div>
   );
 }
+```

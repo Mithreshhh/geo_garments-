@@ -15,7 +15,6 @@ export default function Hero() {
           playsInline
           preload="auto"
           className="absolute inset-0 w-full h-full object-cover"
-          poster="https://images.unsplash.com/photo-1558769132-cb1aea458c5e?auto=format&fit=crop&w=1920&q=85"
         >
           <source src="/hero-bg.mp4" type="video/mp4" />
         </video>
@@ -57,10 +56,10 @@ export default function Hero() {
           <span className="geo-divider-gold" />
         </div>
 
-        <h1 className="font-display text-4xl sm:text-5xl md:text-7xl lg:text-[84px] font-bold text-white mb-5 leading-[1.05] tracking-tight">
+        <h1 className="font-display text-[28px] sm:text-5xl md:text-7xl lg:text-[84px] font-bold text-white mb-5 leading-[1.08] tracking-tight">
           Where Heritage
           <br />
-          Meets <span className="italic text-gradient-gold">Craftsmanship</span>
+          Meets <span className="italic text-gradient-gold pr-1">Craftsmanship</span>
         </h1>
 
         <p className="text-gray-300 text-sm sm:text-base md:text-lg mb-9 max-w-xl mx-auto font-light leading-relaxed px-2 sm:px-0">
