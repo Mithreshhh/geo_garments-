@@ -1,5 +1,5 @@
-import { useState, useEffect, useCallback } from 'react';
-import { Star, ChevronLeft, ChevronRight } from 'lucide-react';
+import { useState, useEffect, useCallback, useRef } from 'react';
+import { Star } from 'lucide-react';
 import CountUp from './CountUp';
 
 interface Testimonial {
@@ -43,7 +43,29 @@ const testimonials: Testimonial[] = [
       'I have tried dozens of brands, and nothing comes close to this quality-to-price ratio. The fit is impeccable, the fabrics feel luxurious, and the service is always personal.',
     initials: 'AP',
   },
+  {
+    id: 4,
+    name: 'Vikram Reddy',
+    role: 'Hotel Manager',
+    company: 'Grand Palace Hotels',
+    rating: 5,
+    quote:
+      'We outfitted our entire staff with Geo uniforms. The durability is exceptional — even after months of daily wear and washing, they look as good as new. Highly recommended for hospitality.',
+    initials: 'VR',
+  },
+  {
+    id: 5,
+    name: 'Sneha Mehta',
+    role: 'Fashion Boutique Owner',
+    company: 'Style Studio',
+    rating: 5,
+    quote:
+      'My customers keep coming back for Geo shirts. The stitching quality and fabric feel premium, but the prices let me offer great value. It has become my best-selling brand.',
+    initials: 'SM',
+  },
 ];
+
+const AUTOPLAY_DURATION = 3000;
 
 function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
   return (
@@ -77,20 +99,55 @@ function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
 
 export default function Testimonials() {
   const [active, setActive] = useState(0);
+  const [progress, setProgress] = useState(0);
   const [paused, setPaused] = useState(false);
+  const touchStartX = useRef<number | null>(null);
+  const touchStartTime = useRef<number>(0);
 
   const next = useCallback(() => {
     setActive((prev) => (prev + 1) % testimonials.length);
+    setProgress(0);
   }, []);
 
   const prev = useCallback(() => {
     setActive((prev) => (prev - 1 + testimonials.length) % testimonials.length);
+    setProgress(0);
   }, []);
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX;
+    touchStartTime.current = Date.now();
+    setPaused(true);
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (touchStartX.current === null) return;
+    const touchEndX = e.changedTouches[0].clientX;
+    const diff = touchStartX.current - touchEndX;
+    const timeDiff = Date.now() - touchStartTime.current;
+    
+    if (Math.abs(diff) > 50 && timeDiff < 300) {
+      if (diff > 0) next();
+      else prev();
+    }
+    touchStartX.current = null;
+    setPaused(false);
+  };
 
   useEffect(() => {
     if (paused) return;
-    const timer = setInterval(next, 3000);
-    return () => clearInterval(timer);
+    
+    const progressInterval = setInterval(() => {
+      setProgress((prev) => {
+        if (prev >= 100) {
+          next();
+          return 0;
+        }
+        return prev + (100 / (AUTOPLAY_DURATION / 50));
+      });
+    }, 50);
+    
+    return () => clearInterval(progressInterval);
   }, [paused, next]);
 
   return (
@@ -108,18 +165,25 @@ export default function Testimonials() {
           </p>
         </div>
 
-        {/* Desktop: grid */}
-        <div className="hidden md:grid md:grid-cols-3 gap-8">
-          {testimonials.map((testimonial) => (
-            <TestimonialCard key={testimonial.id} testimonial={testimonial} />
-          ))}
+        {/* Desktop: grid - show first 3 in top row, next 2 centered below */}
+        <div className="hidden md:block">
+          <div className="grid md:grid-cols-3 gap-8 mb-8">
+            {testimonials.slice(0, 3).map((testimonial) => (
+              <TestimonialCard key={testimonial.id} testimonial={testimonial} />
+            ))}
+          </div>
+          <div className="grid md:grid-cols-2 gap-8 max-w-3xl mx-auto">
+            {testimonials.slice(3).map((testimonial) => (
+              <TestimonialCard key={testimonial.id} testimonial={testimonial} />
+            ))}
+          </div>
         </div>
 
-        {/* Mobile: carousel */}
+        {/* Mobile: carousel with swipe and progress bar */}
         <div
           className="md:hidden relative"
-          onTouchStart={() => setPaused(true)}
-          onTouchEnd={() => setPaused(false)}
+          onTouchStart={handleTouchStart}
+          onTouchEnd={handleTouchEnd}
         >
           <div className="overflow-hidden">
             <div
@@ -134,35 +198,32 @@ export default function Testimonials() {
             </div>
           </div>
 
-          <div className="flex items-center justify-center gap-5 mt-8">
-            <button
-              onClick={() => { prev(); setPaused(true); setTimeout(() => setPaused(false), 6000); }}
-              className="w-9 h-9 rounded-full border border-[#B8935B]/40 flex items-center justify-center text-[#B8935B] active:scale-90 transition-transform"
-              aria-label="Previous testimonial"
-            >
-              <ChevronLeft className="w-4 h-4" />
-            </button>
-
-            <div className="flex gap-2.5">
+          <div className="mt-8 px-4">
+            <div className="relative h-1 w-full max-w-xs mx-auto bg-[#B8935B]/20 rounded-full overflow-hidden">
+              <div 
+                className="absolute inset-y-0 left-0 bg-[#B8935B] rounded-full"
+                style={{ width: `${progress}%` }}
+              />
+            </div>
+            
+            <div className="flex justify-center gap-2 mt-4">
               {testimonials.map((_, i) => (
                 <button
                   key={i}
-                  onClick={() => { setActive(i); setPaused(true); setTimeout(() => setPaused(false), 6000); }}
-                  className={`h-2 rounded-full transition-all duration-300 ${
-                    i === active ? 'w-6 bg-[#B8935B]' : 'w-2 bg-[#B8935B]/30'
+                  onClick={() => { setActive(i); setProgress(0); }}
+                  className={`w-2 h-2 rounded-full transition-all ${
+                    i === active 
+                      ? 'bg-[#B8935B] scale-125' 
+                      : 'bg-[#B8935B]/30 hover:bg-[#B8935B]/50'
                   }`}
                   aria-label={`Go to testimonial ${i + 1}`}
                 />
               ))}
             </div>
-
-            <button
-              onClick={() => { next(); setPaused(true); setTimeout(() => setPaused(false), 6000); }}
-              className="w-9 h-9 rounded-full border border-[#B8935B]/40 flex items-center justify-center text-[#B8935B] active:scale-90 transition-transform"
-              aria-label="Next testimonial"
-            >
-              <ChevronRight className="w-4 h-4" />
-            </button>
+            
+            <p className="text-center text-xs text-gray-400 mt-3">
+              Swipe left or right to navigate
+            </p>
           </div>
         </div>
 
