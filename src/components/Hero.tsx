@@ -99,7 +99,7 @@ export default function Hero() {
           disableRemotePlayback
           className="absolute inset-0 w-full h-full object-cover"
         >
-          <source src="/hero-bg.mp4" type="video/mp4; codecs=avc1.42E01E,mp4a.40.2" />
+          <source src="/hero-bg-optimized.mp4" type="video/mp4; codecs=avc1.42E01E" />
         </video>
         <div className="absolute inset-0 bg-black/55" />
         <div className="absolute inset-0 hero-vignette" />
