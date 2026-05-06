@@ -1,22 +1,105 @@
+import { useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import CountUp from './CountUp';
 
 export default function Hero() {
   const navigate = useNavigate();
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const hasStartedRef = useRef(false);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    const primeForIosSafari = () => {
+      video.muted = true;
+      video.defaultMuted = true;
+      video.setAttribute('muted', '');
+      video.playsInline = true;
+      video.setAttribute('playsinline', '');
+      video.setAttribute('webkit-playsinline', '');
+      video.setAttribute('x-webkit-airplay', 'deny');
+    };
+
+    const tryPlay = async () => {
+      if (hasStartedRef.current && !video.paused) return;
+      
+      primeForIosSafari();
+      try {
+        const playPromise = video.play();
+        if (playPromise !== undefined) {
+          await playPromise;
+          hasStartedRef.current = true;
+        }
+      } catch {
+        // Autoplay blocked, will retry on user interaction
+      }
+    };
+
+    primeForIosSafari();
+    
+    // Initial play attempt after a short delay for Safari
+    const initialTimeout = setTimeout(() => {
+      tryPlay();
+    }, 100);
+
+    const onVisible = () => {
+      if (document.visibilityState === 'visible') tryPlay();
+    };
+
+    const onUserInteraction = () => {
+      tryPlay();
+    };
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            tryPlay();
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    observer.observe(video);
+
+    video.addEventListener('loadeddata', tryPlay);
+    video.addEventListener('canplay', tryPlay);
+    document.addEventListener('visibilitychange', onVisible);
+    document.addEventListener('touchstart', onUserInteraction, { once: true, passive: true });
+    document.addEventListener('click', onUserInteraction, { once: true });
+    document.addEventListener('scroll', onUserInteraction, { once: true, passive: true });
+
+    return () => {
+      clearTimeout(initialTimeout);
+      observer.disconnect();
+      video.removeEventListener('loadeddata', tryPlay);
+      video.removeEventListener('canplay', tryPlay);
+      document.removeEventListener('visibilitychange', onVisible);
+      document.removeEventListener('touchstart', onUserInteraction);
+      document.removeEventListener('click', onUserInteraction);
+      document.removeEventListener('scroll', onUserInteraction);
+    };
+  }, []);
 
   return (
     <section className="relative w-full min-h-screen flex items-center justify-center overflow-hidden bg-[#0B0A08]">
-      <div className="absolute inset-0 z-0">
+      <div className="absolute inset-0 z-0 pointer-events-none">
         <video
+          ref={videoRef}
           autoPlay
           muted
           loop
           playsInline
           preload="auto"
+          controls={false}
+          disablePictureInPicture
+          disableRemotePlayback
           className="absolute inset-0 w-full h-full object-cover"
         >
-          <source src="/hero-bg.mp4" type="video/mp4" />
+          <source src="/hero-bg.mp4" type="video/mp4; codecs=avc1.42E01E,mp4a.40.2" />
         </video>
         <div className="absolute inset-0 bg-black/55" />
         <div className="absolute inset-0 hero-vignette" />
