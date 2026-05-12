@@ -1,90 +1,74 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import CountUp from './CountUp';
 
+const isSafari = () => {
+  if (typeof window === 'undefined') return false;
+  const ua = navigator.userAgent.toLowerCase();
+  const isSafariBrowser = ua.includes('safari') && !ua.includes('chrome') && !ua.includes('android');
+  const isIOS = /iphone|ipad|ipod/.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+  return isSafariBrowser || isIOS;
+};
+
 export default function Hero() {
   const navigate = useNavigate();
   const videoRef = useRef<HTMLVideoElement>(null);
+  const [useFallback, setUseFallback] = useState(false);
 
   useEffect(() => {
+    // Use animated WebP for Safari/iOS - no autoplay issues with images
+    if (isSafari()) {
+      setUseFallback(true);
+      return;
+    }
+
     const video = videoRef.current;
     if (!video) return;
 
-    // Set Safari-specific attributes directly on DOM
-    video.setAttribute('webkit-playsinline', 'true');
-    video.setAttribute('playsinline', 'true');
-    video.setAttribute('x-webkit-airplay', 'deny');
     video.muted = true;
     video.playsInline = true;
 
-    const forcePlay = () => {
-      video.muted = true;
-      video.playsInline = true;
-      video.play().catch(() => {});
+    const tryPlay = () => {
+      video.play().catch(() => {
+        // If video fails to play, use fallback
+        setUseFallback(true);
+      });
     };
 
-    // Immediate attempt
-    forcePlay();
+    tryPlay();
+    const t1 = setTimeout(tryPlay, 300);
 
-    // Delayed attempts for Safari
-    const t1 = setTimeout(forcePlay, 100);
-    const t2 = setTimeout(forcePlay, 500);
-    const t3 = setTimeout(forcePlay, 1000);
-
-    // On any user interaction
-    const handleInteraction = () => {
-      forcePlay();
-      document.removeEventListener('touchstart', handleInteraction);
-      document.removeEventListener('touchend', handleInteraction);
-      document.removeEventListener('click', handleInteraction);
-      document.removeEventListener('scroll', handleInteraction);
-    };
-
-    document.addEventListener('touchstart', handleInteraction, { passive: true });
-    document.addEventListener('touchend', handleInteraction, { passive: true });
-    document.addEventListener('click', handleInteraction);
-    document.addEventListener('scroll', handleInteraction, { passive: true });
-
-    // On video ready
-    video.addEventListener('loadedmetadata', forcePlay);
-    video.addEventListener('loadeddata', forcePlay);
-    video.addEventListener('canplay', forcePlay);
-    video.addEventListener('canplaythrough', forcePlay);
+    video.addEventListener('canplay', tryPlay);
 
     return () => {
       clearTimeout(t1);
-      clearTimeout(t2);
-      clearTimeout(t3);
-      document.removeEventListener('touchstart', handleInteraction);
-      document.removeEventListener('touchend', handleInteraction);
-      document.removeEventListener('click', handleInteraction);
-      document.removeEventListener('scroll', handleInteraction);
-      video.removeEventListener('loadedmetadata', forcePlay);
-      video.removeEventListener('loadeddata', forcePlay);
-      video.removeEventListener('canplay', forcePlay);
-      video.removeEventListener('canplaythrough', forcePlay);
+      video.removeEventListener('canplay', tryPlay);
     };
   }, []);
 
   return (
     <section className="relative w-full min-h-screen flex items-center justify-center overflow-hidden bg-[#0B0A08]">
       <div className="absolute inset-0 z-0 pointer-events-none">
-        <video
-          ref={videoRef}
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="metadata"
-          className="absolute inset-0 w-full h-full object-cover [&::-webkit-media-controls]:hidden [&::-webkit-media-controls-enclosure]:hidden [&::-webkit-media-controls-panel]:hidden"
-          style={{ 
-            WebkitAppearance: 'none',
-            objectFit: 'cover'
-          }}
-        >
-          <source src="/hero-bg-optimized.mp4" type="video/mp4" />
-        </video>
+        {useFallback ? (
+          <img
+            src="/hero-bg.webp"
+            alt=""
+            className="absolute inset-0 w-full h-full object-cover"
+          />
+        ) : (
+          <video
+            ref={videoRef}
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="metadata"
+            className="absolute inset-0 w-full h-full object-cover"
+          >
+            <source src="/hero-bg-optimized.mp4" type="video/mp4" />
+          </video>
+        )}
         <div className="absolute inset-0 bg-black/55" />
         <div className="absolute inset-0 hero-vignette" />
       </div>
