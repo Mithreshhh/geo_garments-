@@ -3,26 +3,27 @@ import { useNavigate } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import CountUp from './CountUp';
 
-const isSafari = () => {
+const isSafariOrIOS = () => {
   if (typeof window === 'undefined') return false;
   const ua = navigator.userAgent.toLowerCase();
-  const isSafariBrowser = ua.includes('safari') && !ua.includes('chrome') && !ua.includes('android');
+  const isSafari = ua.includes('safari') && !ua.includes('chrome') && !ua.includes('android');
   const isIOS = /iphone|ipad|ipod/.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
-  return isSafariBrowser || isIOS;
+  return isSafari || isIOS;
 };
 
 export default function Hero() {
   const navigate = useNavigate();
   const videoRef = useRef<HTMLVideoElement>(null);
-  const [useFallback, setUseFallback] = useState(false);
+  const [useWebp, setUseWebp] = useState(true);
+  const [mediaLoaded, setMediaLoaded] = useState(false);
 
   useEffect(() => {
-    // Use animated WebP for Safari/iOS - no autoplay issues with images
-    if (isSafari()) {
-      setUseFallback(true);
-      return;
-    }
+    setUseWebp(isSafariOrIOS());
+  }, []);
 
+  useEffect(() => {
+    if (useWebp) return;
+    
     const video = videoRef.current;
     if (!video) return;
 
@@ -30,31 +31,34 @@ export default function Hero() {
     video.playsInline = true;
 
     const tryPlay = () => {
-      video.play().catch(() => {
-        // If video fails to play, use fallback
-        setUseFallback(true);
-      });
+      video.muted = true;
+      video.play().catch(() => {});
     };
 
     tryPlay();
-    const t1 = setTimeout(tryPlay, 300);
+    const t1 = setTimeout(tryPlay, 100);
+    const t2 = setTimeout(tryPlay, 300);
 
     video.addEventListener('canplay', tryPlay);
 
     return () => {
       clearTimeout(t1);
+      clearTimeout(t2);
       video.removeEventListener('canplay', tryPlay);
     };
-  }, []);
+  }, [useWebp]);
 
   return (
     <section className="relative w-full min-h-screen flex items-center justify-center overflow-hidden bg-[#0B0A08]">
-      <div className="absolute inset-0 z-0 pointer-events-none">
-        {useFallback ? (
+      <div className="absolute inset-0 z-0 pointer-events-none bg-black">
+        {useWebp ? (
           <img
             src="/hero-bg.webp"
             alt=""
-            className="absolute inset-0 w-full h-full object-cover"
+            onLoad={() => setMediaLoaded(true)}
+            className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ${
+              mediaLoaded ? 'opacity-100' : 'opacity-0'
+            }`}
           />
         ) : (
           <video
@@ -63,8 +67,11 @@ export default function Hero() {
             muted
             loop
             playsInline
-            preload="metadata"
-            className="absolute inset-0 w-full h-full object-cover"
+            preload="auto"
+            onLoadedData={() => setMediaLoaded(true)}
+            className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ${
+              mediaLoaded ? 'opacity-100' : 'opacity-0'
+            }`}
           >
             <source src="/hero-bg-optimized.mp4" type="video/mp4" />
           </video>
@@ -110,7 +117,7 @@ export default function Hero() {
         <h1 className="font-display text-[28px] sm:text-5xl md:text-7xl lg:text-[84px] font-bold text-white mb-5 leading-[1.08] tracking-tight">
           Where Heritage
           <br />
-          Meets <span className="italic text-gradient-gold pr-1">Craftsmanship</span>
+          Meets <span className="italic text-gradient-gold pr-3 md:pr-4">Craftsmanship</span>
         </h1>
 
         <p className="text-gray-300 text-sm sm:text-base md:text-lg mb-9 max-w-xl mx-auto font-light leading-relaxed px-2 sm:px-0">
