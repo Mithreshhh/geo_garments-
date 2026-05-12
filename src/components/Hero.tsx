@@ -6,81 +6,64 @@ import CountUp from './CountUp';
 export default function Hero() {
   const navigate = useNavigate();
   const videoRef = useRef<HTMLVideoElement>(null);
-  const hasStartedRef = useRef(false);
 
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
 
-    const primeForIosSafari = () => {
+    // Set Safari-specific attributes directly on DOM
+    video.setAttribute('webkit-playsinline', 'true');
+    video.setAttribute('playsinline', 'true');
+    video.setAttribute('x-webkit-airplay', 'deny');
+    video.muted = true;
+    video.playsInline = true;
+
+    const forcePlay = () => {
       video.muted = true;
-      video.defaultMuted = true;
-      video.setAttribute('muted', '');
       video.playsInline = true;
-      video.setAttribute('playsinline', '');
-      video.setAttribute('webkit-playsinline', '');
-      video.setAttribute('x-webkit-airplay', 'deny');
+      video.play().catch(() => {});
     };
 
-    const tryPlay = async () => {
-      if (hasStartedRef.current && !video.paused) return;
-      
-      primeForIosSafari();
-      try {
-        const playPromise = video.play();
-        if (playPromise !== undefined) {
-          await playPromise;
-          hasStartedRef.current = true;
-        }
-      } catch {
-        // Autoplay blocked, will retry on user interaction
-      }
+    // Immediate attempt
+    forcePlay();
+
+    // Delayed attempts for Safari
+    const t1 = setTimeout(forcePlay, 100);
+    const t2 = setTimeout(forcePlay, 500);
+    const t3 = setTimeout(forcePlay, 1000);
+
+    // On any user interaction
+    const handleInteraction = () => {
+      forcePlay();
+      document.removeEventListener('touchstart', handleInteraction);
+      document.removeEventListener('touchend', handleInteraction);
+      document.removeEventListener('click', handleInteraction);
+      document.removeEventListener('scroll', handleInteraction);
     };
 
-    primeForIosSafari();
-    
-    // Initial play attempt after a short delay for Safari
-    const initialTimeout = setTimeout(() => {
-      tryPlay();
-    }, 100);
+    document.addEventListener('touchstart', handleInteraction, { passive: true });
+    document.addEventListener('touchend', handleInteraction, { passive: true });
+    document.addEventListener('click', handleInteraction);
+    document.addEventListener('scroll', handleInteraction, { passive: true });
 
-    const onVisible = () => {
-      if (document.visibilityState === 'visible') tryPlay();
-    };
-
-    const onUserInteraction = () => {
-      tryPlay();
-    };
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            tryPlay();
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-
-    observer.observe(video);
-
-    video.addEventListener('loadeddata', tryPlay);
-    video.addEventListener('canplay', tryPlay);
-    document.addEventListener('visibilitychange', onVisible);
-    document.addEventListener('touchstart', onUserInteraction, { once: true, passive: true });
-    document.addEventListener('click', onUserInteraction, { once: true });
-    document.addEventListener('scroll', onUserInteraction, { once: true, passive: true });
+    // On video ready
+    video.addEventListener('loadedmetadata', forcePlay);
+    video.addEventListener('loadeddata', forcePlay);
+    video.addEventListener('canplay', forcePlay);
+    video.addEventListener('canplaythrough', forcePlay);
 
     return () => {
-      clearTimeout(initialTimeout);
-      observer.disconnect();
-      video.removeEventListener('loadeddata', tryPlay);
-      video.removeEventListener('canplay', tryPlay);
-      document.removeEventListener('visibilitychange', onVisible);
-      document.removeEventListener('touchstart', onUserInteraction);
-      document.removeEventListener('click', onUserInteraction);
-      document.removeEventListener('scroll', onUserInteraction);
+      clearTimeout(t1);
+      clearTimeout(t2);
+      clearTimeout(t3);
+      document.removeEventListener('touchstart', handleInteraction);
+      document.removeEventListener('touchend', handleInteraction);
+      document.removeEventListener('click', handleInteraction);
+      document.removeEventListener('scroll', handleInteraction);
+      video.removeEventListener('loadedmetadata', forcePlay);
+      video.removeEventListener('loadeddata', forcePlay);
+      video.removeEventListener('canplay', forcePlay);
+      video.removeEventListener('canplaythrough', forcePlay);
     };
   }, []);
 
@@ -93,13 +76,14 @@ export default function Hero() {
           muted
           loop
           playsInline
-          preload="auto"
-          controls={false}
-          disablePictureInPicture
-          disableRemotePlayback
-          className="absolute inset-0 w-full h-full object-cover"
+          preload="metadata"
+          className="absolute inset-0 w-full h-full object-cover [&::-webkit-media-controls]:hidden [&::-webkit-media-controls-enclosure]:hidden [&::-webkit-media-controls-panel]:hidden"
+          style={{ 
+            WebkitAppearance: 'none',
+            objectFit: 'cover'
+          }}
         >
-          <source src="/hero-bg-optimized.mp4" type="video/mp4; codecs=avc1.42E01E" />
+          <source src="/hero-bg-optimized.mp4" type="video/mp4" />
         </video>
         <div className="absolute inset-0 bg-black/55" />
         <div className="absolute inset-0 hero-vignette" />
