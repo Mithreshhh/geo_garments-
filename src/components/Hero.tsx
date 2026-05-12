@@ -1,84 +1,121 @@
 import { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, Play, Pause } from 'lucide-react';
 import CountUp from './CountUp';
-
-const isSafariOrIOS = () => {
-  if (typeof window === 'undefined') return false;
-  const ua = navigator.userAgent.toLowerCase();
-  const isSafari = ua.includes('safari') && !ua.includes('chrome') && !ua.includes('android');
-  const isIOS = /iphone|ipad|ipod/.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
-  return isSafari || isIOS;
-};
 
 export default function Hero() {
   const navigate = useNavigate();
   const videoRef = useRef<HTMLVideoElement>(null);
-  const [useWebp, setUseWebp] = useState(true);
-  const [mediaLoaded, setMediaLoaded] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [showPlayButton, setShowPlayButton] = useState(false);
 
   useEffect(() => {
-    setUseWebp(isSafariOrIOS());
-  }, []);
-
-  useEffect(() => {
-    if (useWebp) return;
-    
     const video = videoRef.current;
     if (!video) return;
 
     video.muted = true;
     video.playsInline = true;
+    video.setAttribute('playsinline', 'true');
+    video.setAttribute('webkit-playsinline', 'true');
 
-    const tryPlay = () => {
-      video.muted = true;
-      video.play().catch(() => {});
+    const tryPlay = async () => {
+      try {
+        video.muted = true;
+        await video.play();
+        setIsPlaying(true);
+        setShowPlayButton(false);
+      } catch {
+        setIsPlaying(false);
+        setShowPlayButton(true);
+      }
     };
 
     tryPlay();
-    const t1 = setTimeout(tryPlay, 100);
-    const t2 = setTimeout(tryPlay, 300);
+    const t1 = setTimeout(tryPlay, 200);
+    const t2 = setTimeout(tryPlay, 600);
+
+    const onPlay = () => {
+      setIsPlaying(true);
+      setShowPlayButton(false);
+    };
+    const onPause = () => {
+      setIsPlaying(false);
+    };
 
     video.addEventListener('canplay', tryPlay);
+    video.addEventListener('play', onPlay);
+    video.addEventListener('playing', onPlay);
+    video.addEventListener('pause', onPause);
 
     return () => {
       clearTimeout(t1);
       clearTimeout(t2);
       video.removeEventListener('canplay', tryPlay);
+      video.removeEventListener('play', onPlay);
+      video.removeEventListener('playing', onPlay);
+      video.removeEventListener('pause', onPause);
     };
-  }, [useWebp]);
+  }, []);
+
+  const togglePlay = async () => {
+    const video = videoRef.current;
+    if (!video) return;
+    if (video.paused) {
+      try {
+        video.muted = true;
+        await video.play();
+      } catch {
+        // ignore
+      }
+    } else {
+      video.pause();
+    }
+  };
 
   return (
     <section className="relative w-full min-h-screen flex items-center justify-center overflow-hidden bg-[#0B0A08]">
-      <div className="absolute inset-0 z-0 pointer-events-none bg-black">
-        {useWebp ? (
-          <img
-            src="/hero-bg.webp"
-            alt=""
-            onLoad={() => setMediaLoaded(true)}
-            className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ${
-              mediaLoaded ? 'opacity-100' : 'opacity-0'
-            }`}
-          />
-        ) : (
-          <video
-            ref={videoRef}
-            autoPlay
-            muted
-            loop
-            playsInline
-            preload="auto"
-            onLoadedData={() => setMediaLoaded(true)}
-            className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ${
-              mediaLoaded ? 'opacity-100' : 'opacity-0'
-            }`}
-          >
-            <source src="/hero-bg-optimized.mp4" type="video/mp4" />
-          </video>
-        )}
-        <div className="absolute inset-0 bg-black/55" />
-        <div className="absolute inset-0 hero-vignette" />
+      <div className="absolute inset-0 z-0 bg-black">
+        <video
+          ref={videoRef}
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="auto"
+          className="absolute inset-0 w-full h-full object-cover pointer-events-none"
+        >
+          <source src="/hero-bg-optimized.mp4" type="video/mp4" />
+        </video>
+        <div className="absolute inset-0 bg-black/55 pointer-events-none" />
+        <div className="absolute inset-0 hero-vignette pointer-events-none" />
       </div>
+
+      {showPlayButton && !isPlaying && (
+        <button
+          onClick={togglePlay}
+          aria-label="Play background video"
+          className="absolute inset-0 z-20 flex items-center justify-center bg-black/30 backdrop-blur-[2px] transition-opacity duration-300"
+        >
+          <div className="flex flex-col items-center gap-3">
+            <div className="w-20 h-20 rounded-full bg-[#B8935B]/90 hover:bg-[#B8935B] flex items-center justify-center shadow-2xl transition-all active:scale-95 ring-4 ring-white/20">
+              <Play className="w-8 h-8 text-[#0B0A08] ml-1" fill="currentColor" />
+            </div>
+            <p className="text-white/90 text-xs uppercase tracking-[0.25em] font-medium">
+              Tap to play
+            </p>
+          </div>
+        </button>
+      )}
+
+      {isPlaying && (
+        <button
+          onClick={togglePlay}
+          aria-label="Pause background video"
+          className="absolute bottom-6 right-6 z-20 w-10 h-10 rounded-full bg-black/40 hover:bg-black/60 backdrop-blur-sm flex items-center justify-center transition-all active:scale-95 opacity-40 hover:opacity-100"
+        >
+          <Pause className="w-4 h-4 text-white" fill="currentColor" />
+        </button>
+      )}
 
       <div className="absolute top-1/3 left-6 md:left-12 hidden lg:block z-10 opacity-40">
         <div className="flex flex-col items-center gap-3">
